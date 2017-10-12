@@ -1,0 +1,44 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaCaratula
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<clasificacionArchivisticaAsunto>16-HREV-51
+				</clasificacionArchivisticaAsunto>
+				<clasificacionArchivisticaFechaAperturaExpediente />
+				<clasificacionArchivisticaFechaCierreExpediente />
+				<clasificacionArchivisticaNombreResponsableIntegracion />
+				<clasificacionArchivisticaSeccion>Logística
+				</clasificacionArchivisticaSeccion>
+				<clasificacionArchivisticaSerie>RECLAMOS
+				</clasificacionArchivisticaSerie>
+				<clasificacionArchivisticaSubserie>RECLAMOS POR CALIDAD Y CANTIDAD
+				</clasificacionArchivisticaSubserie>
+				<clasificacionReservada />
+				<plazoConservacionArchivoConcentracion />
+				<plazoConservacionArchivoTramite />
+				<unidadAdminsitrativa>DIRECCIÓN COMERCIAL DE CRUDO
+				</unidadAdminsitrativa>
+				<valorDocumentalAdministrativo>false</valorDocumentalAdministrativo>
+				<valorDocumentalFinanciero>false</valorDocumentalFinanciero>
+				<valorDocumentalLegal>false</valorDocumentalLegal>
+			</arg0>
+			<arg1>
+				<nombreDoc>PMI-14E-058-002-000039-2017</nombreDoc>
+				<rutaDocumento>/PMI/LOGÍSTICA/RECLAMOS/RECLAMOS POR CALIDAD Y
+					CANTIDAD/16-HREV-51</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>r_object_id</key>
+					<value>0b01e24080022998</value>
+				</entry>
+			</arg2>
+		</ns0:generaCaratula>
+	</env:Body>
+</env:Envelope>

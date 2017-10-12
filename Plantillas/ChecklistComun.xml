@@ -1,0 +1,26 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaChecklistComercial
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg1>
+				<rutaDocumento>/PMI/ASUNTOS JURÍDICOS/TRAMITES NOTARIALES/PODERES/Prueba 20170406 1105 genérico</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+				<userName>CEPMI001</userName>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>numeroExpediente</key>
+					<value>PMI-02C-023-001-000028-2017</value>
+				</entry>
+				<entry>
+					<key>asuntoSubexpediente</key>
+					<value>Prueba 20170406 1105 genérico</value>
+				</entry>
+			</arg2>
+		</ns0:generaChecklistComercial>
+	</env:Body>
+</env:Envelope>

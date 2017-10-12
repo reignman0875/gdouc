@@ -1,0 +1,39 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaCaratula
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<clasificacionArchivisticaAsunto>Prueba 20170418 2033 carátula</clasificacionArchivisticaAsunto>
+				<clasificacionArchivisticaFechaAperturaExpediente />
+				<clasificacionArchivisticaFechaCierreExpediente />
+				<clasificacionArchivisticaNombreResponsableIntegracion />
+				<clasificacionArchivisticaSeccion>Logística</clasificacionArchivisticaSeccion>
+				<clasificacionArchivisticaSerie>PROGRAMAS OPERATIVOS</clasificacionArchivisticaSerie>
+				<clasificacionArchivisticaSubserie>PROGRAMAS OPERATIVOS REFINADOS</clasificacionArchivisticaSubserie>
+				<clasificacionReservada />
+				<plazoConservacionArchivoConcentracion />
+				<plazoConservacionArchivoTramite />
+				<unidadAdminsitrativa>SUBDIRECCIÓN DE FLETAMENTOS</unidadAdminsitrativa>
+				<valorDocumentalAdministrativo>false</valorDocumentalAdministrativo>
+				<valorDocumentalFinanciero>false</valorDocumentalFinanciero>
+				<valorDocumentalLegal>false</valorDocumentalLegal>
+			</arg0>
+			<arg1>
+				<nombreDoc>PMI-14E-055-002-000046-2017</nombreDoc>
+				<rutaDocumento>/PMI/LOGÍSTICA/PROGRAMAS OPERATIVOS/PROGRAMAS
+					OPERATIVOS REFINADOS/Prueba 20170418 2033 carátula</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>r_object_id</key>
+					<value>0b01e2408002336f</value>
+				</entry>
+			</arg2>
+		</ns0:generaCaratula>
+	</env:Body>
+</env:Envelope>

@@ -1,0 +1,29 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaValePrestamo
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<fechaPrestamoAnio>2016</fechaPrestamoAnio>
+				<fechaPrestamoDia>7</fechaPrestamoDia>
+				<fechaPrestamoMes>2</fechaPrestamoMes>
+				<folio>080000018006a0d8</folio>
+				<nombreSolicitante>Santin Blasco, Adalberto</nombreSolicitante>
+			</arg0>
+			<arg1>
+				<fechaDevolucion>08-Feb-2016</fechaDevolucion>
+				<numExpediente>PMI-2C-19-1-000349-2016</numExpediente>
+				<totalExpedientes>1</totalExpedientes>
+			</arg1>
+			<arg2>
+				<nombreDoc>PMI-2C-19-1-000349-2016</nombreDoc>
+				<rutaDocumento>/PMI/Aplicativo/Prestamos/PMI-2C-19-1-000349-2016/Vales
+				</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg2>
+		</ns0:generaValePrestamo>
+	</env:Body>
+</env:Envelope>

@@ -1,0 +1,92 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaCaratula
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<clasificacionArchivisticaFechaAperturaExpediente>18-04-2017</clasificacionArchivisticaFechaAperturaExpediente>
+				<clasificacionArchivisticaFechaCierreExpediente>18-04-2017</clasificacionArchivisticaFechaCierreExpediente>
+				<clasificacionArchivisticaSeccion>Comercialización</clasificacionArchivisticaSeccion>
+				<clasificacionArchivisticaSerie>EXPEDIENTES COMERCIALIZACIÓN Y
+					OPERATIVO DE PRODUCTOS</clasificacionArchivisticaSerie>
+				<clasificacionArchivisticaSubserie />
+				<periodoAdicionalNoExpediente>PMI-15E-071-000-000043-2017</periodoAdicionalNoExpediente>
+				<plazoConservacionArchivoConcentracion>6</plazoConservacionArchivoConcentracion>
+				<plazoConservacionArchivoTramite>1</plazoConservacionArchivoTramite>
+				<unidadAdminsitrativa>SUBDIRECCIÓN COM. GASOLINAS Y COMP.</unidadAdminsitrativa>
+				<valorDocumentalAdministrativo>true</valorDocumentalAdministrativo>
+				<valorDocumentalFinanciero>true</valorDocumentalFinanciero>
+				<valorDocumentalLegal>true</valorDocumentalLegal>
+			</arg0>
+			<arg1>
+				<nombreDoc>Tesorería</nombreDoc>
+				<rutaDocumento>/PMI/COMERCIALIZACIÓN/EXPEDIENTES COMERCIALIZACIÓN Y
+					OPERATIVO DE PRODUCTOS/BGP/Tesorería</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>r_object_id</key>
+					<value>0b01e24080022e93</value>
+				</entry>
+				<entry>
+					<key>idACL</key>
+					<value>4501e24080001d1b</value>
+				</entry>
+				<entry>
+					<key>asuntoSubexpediente</key>
+					<value>Tesorería</value>
+				</entry>
+			</arg2>
+		</ns0:generaCaratula>
+	</env:Body>
+</env:Envelope>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaCaratula
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<clasificacionArchivisticaFechaAperturaExpediente>18-04-2017</clasificacionArchivisticaFechaAperturaExpediente>
+				<clasificacionArchivisticaFechaCierreExpediente>18-04-2017</clasificacionArchivisticaFechaCierreExpediente>
+				<clasificacionArchivisticaSeccion>Comercialización</clasificacionArchivisticaSeccion>
+				<clasificacionArchivisticaSerie>EXPEDIENTES COMERCIALIZACIÓN Y
+					OPERATIVO DE PRODUCTOS</clasificacionArchivisticaSerie>
+				<clasificacionArchivisticaSubserie />
+				<periodoAdicionalNoExpediente>PMI-15E-071-000-000043-2017</periodoAdicionalNoExpediente>
+				<plazoConservacionArchivoConcentracion>6</plazoConservacionArchivoConcentracion>
+				<plazoConservacionArchivoTramite>1</plazoConservacionArchivoTramite>
+				<unidadAdminsitrativa>SUBDIRECCIÓN COM. GASOLINAS Y COMP.</unidadAdminsitrativa>
+				<valorDocumentalAdministrativo>true</valorDocumentalAdministrativo>
+				<valorDocumentalFinanciero>true</valorDocumentalFinanciero>
+				<valorDocumentalLegal>true</valorDocumentalLegal>
+			</arg0>
+			<arg1>
+				<nombreDoc>Tesorería</nombreDoc>
+				<rutaDocumento>/PMI/COMERCIALIZACIÓN/EXPEDIENTES COMERCIALIZACIÓN Y
+					OPERATIVO DE PRODUCTOS/BGP/Tesorería</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>r_object_id</key>
+					<value>0b01e24080022e93</value>
+				</entry>
+				<entry>
+					<key>idACL</key>
+					<value>4501e24080001d1b</value>
+				</entry>
+				<entry>
+					<key>asuntoSubexpediente</key>
+					<value>Tesorería</value>
+				</entry>
+			</arg2>
+		</ns0:generaCaratula>
+	</env:Body>
+</env:Envelope>

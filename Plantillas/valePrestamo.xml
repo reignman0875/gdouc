@@ -1,0 +1,35 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaValePrestamo
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg0>
+				<direccion>SUBDIRECCIÓN COM. GASOLINAS Y COMP.</direccion>
+				<fechaPrestamoAnio>2017</fechaPrestamoAnio>
+				<fechaPrestamoDia>11</fechaPrestamoDia>
+				<fechaPrestamoMes>5</fechaPrestamoMes>
+				<folio>1493918708598</folio>
+				<nombreAutoriza>Escalante Andrade Hector</nombreAutoriza>
+				<nombreQuienEntrega>Moreno Cervantes, Carlos</nombreQuienEntrega>
+				<nombreSolicitante>Mucino Hernandez Iquingari</nombreSolicitante>
+				<solicitante>Mucino Hernandez Iquingari</solicitante>
+				<unidadAdministrativa>SUBDIRECCIÓN COMERCIAL DE GASOLINAS Y COMPONENTES</unidadAdministrativa>
+			</arg0>
+			<arg1>
+				<fechaDevolucion>11-05-2017</fechaDevolucion>
+				<numExpediente>PMI-15E-071-000-000023-2017</numExpediente>
+				<numOrden>CTT-16-0917,CTT-16-0959</numOrden>
+				<totalExpedientes>1</totalExpedientes>
+				<ubicacionTopografica />
+			</arg1>
+			<arg2>
+				<nombreDoc>1493918708598</nombreDoc>
+				<rutaDocumento>/PMI/Aplicativo/Prestamos</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Documentos xml generador</rutaXML>
+			</arg2>
+		</ns0:generaValePrestamo>
+	</env:Body>
+</env:Envelope>

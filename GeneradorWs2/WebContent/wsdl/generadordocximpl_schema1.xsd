@@ -1,0 +1,1038 @@
+<xs:schema xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+  <xs:element name="Caratula" type="tns:caratulaBean"/>
+  <xs:element name="ChecklistComCrudo" type="tns:checklistComCrudoBean"/>
+  <xs:element name="ChecklistComProductos" type="tns:checklistComercialBean"/>
+  <xs:element name="ChecklistDemoras" type="tns:checklistDemorasBean"/>
+  <xs:element name="ChecklistFletamentos" type="tns:checklistFletamentosBean"/>
+  <xs:element name="ChecklistMaritimo" type="tns:checklistMaritimoBean"/>
+  <xs:element name="ChecklistReclamos" type="tns:checklistReclamosBean"/>
+  <xs:element name="ChecklistTerrestre" type="tns:checklistTerrestreBean"/>
+  <xs:element name="ExpedientesDesclasifica" type="tns:expedientesDesclasificaBean"/>
+  <xs:element name="GuiaSimple" nillable="true" type="xs:anyType"/>
+  <xs:element name="InTransferenciaPrimariaSecundaria" nillable="true" type="xs:anyType"/>
+  <xs:element name="IndiceExpedientesReserva" nillable="true" type="xs:anyType"/>
+  <xs:element name="Padre" type="tns:padreBean"/>
+  <xs:element name="ValePrestamo" nillable="true" type="xs:anyType"/>
+  <xs:element name="generaCaratula" type="tns:generaCaratula"/>
+  <xs:element name="generaCaratulaResponse" type="tns:generaCaratulaResponse"/>
+  <xs:element name="generaChecklistComCrudo" type="tns:generaChecklistComCrudo"/>
+  <xs:element name="generaChecklistComCrudoResponse" type="tns:generaChecklistComCrudoResponse"/>
+  <xs:element name="generaChecklistComercial" type="tns:generaChecklistComercial"/>
+  <xs:element name="generaChecklistComercialResponse" type="tns:generaChecklistComercialResponse"/>
+  <xs:element name="generaChecklistDemoras" type="tns:generaChecklistDemoras"/>
+  <xs:element name="generaChecklistDemorasResponse" type="tns:generaChecklistDemorasResponse"/>
+  <xs:element name="generaChecklistFletamentos" type="tns:generaChecklistFletamentos"/>
+  <xs:element name="generaChecklistFletamentosResponse" type="tns:generaChecklistFletamentosResponse"/>
+  <xs:element name="generaChecklistMaritimo" type="tns:generaChecklistMaritimo"/>
+  <xs:element name="generaChecklistMaritimoResponse" type="tns:generaChecklistMaritimoResponse"/>
+  <xs:element name="generaChecklistReclamos" type="tns:generaChecklistReclamos"/>
+  <xs:element name="generaChecklistReclamosResponse" type="tns:generaChecklistReclamosResponse"/>
+  <xs:element name="generaChecklistTerrestre" type="tns:generaChecklistTerrestre"/>
+  <xs:element name="generaChecklistTerrestreResponse" type="tns:generaChecklistTerrestreResponse"/>
+  <xs:element name="generaExpedientesDesclasifica" type="tns:generaExpedientesDesclasifica"/>
+  <xs:element name="generaExpedientesDesclasificaResponse" type="tns:generaExpedientesDesclasificaResponse"/>
+  <xs:element name="generaGuiaSimple" type="tns:generaGuiaSimple"/>
+  <xs:element name="generaGuiaSimpleResponse" type="tns:generaGuiaSimpleResponse"/>
+  <xs:element name="generaInTransferenciaPrimariaSecundaria" type="tns:generaInTransferenciaPrimariaSecundaria"/>
+  <xs:element name="generaInTransferenciaPrimariaSecundariaResponse" type="tns:generaInTransferenciaPrimariaSecundariaResponse"/>
+  <xs:element name="generaIndiceExpedientesReserva" type="tns:generaIndiceExpedientesReserva"/>
+  <xs:element name="generaIndiceExpedientesReservaResponse" type="tns:generaIndiceExpedientesReservaResponse"/>
+  <xs:element name="generaValePrestamo" type="tns:generaValePrestamo"/>
+  <xs:element name="generaValePrestamoResponse" type="tns:generaValePrestamoResponse"/>
+  <xs:element name="prueba" type="tns:prueba"/>
+  <xs:element name="pruebaResponse" type="tns:pruebaResponse"/>
+  <xs:complexType name="generaExpedientesDesclasifica">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:expedientesDesclasificaBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:expedientesDesclasificaTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="expedientesDesclasificaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="areaProcedencia" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoAutoriza" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoElaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoResponsable" type="xs:string"/>
+          <xs:element minOccurs="0" name="de" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaElaboracionAnio" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaElaboracionDia" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaElaboracionMes" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaNo" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreAutoriza" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreQuienElaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreResponsable" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdministrativa" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="padreBean">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="expedientesDesclasificaTablaBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="asunto" type="xs:string"/>
+      <xs:element minOccurs="0" name="fechaApertura" type="xs:string"/>
+      <xs:element minOccurs="0" name="fechaCierre" type="xs:string"/>
+      <xs:element minOccurs="0" name="fechaClasificacion" type="xs:string"/>
+      <xs:element minOccurs="0" name="fechaDesclasificacion" type="xs:string"/>
+      <xs:element minOccurs="0" name="fundamentoLegal" type="xs:string"/>
+      <xs:element minOccurs="0" name="noExpediente" type="xs:string"/>
+      <xs:element minOccurs="0" name="periodoReserva" type="xs:string"/>
+      <xs:element minOccurs="0" name="plazoConservacion" type="xs:string"/>
+      <xs:element minOccurs="0" name="seccion" type="xs:string"/>
+      <xs:element minOccurs="0" name="serie" type="xs:string"/>
+      <xs:element minOccurs="0" name="vigenciaDocumental" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generadorBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nombreDoc" type="xs:string"/>
+      <xs:element minOccurs="0" name="rutaDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" name="rutaXML" type="xs:string"/>
+      <xs:element minOccurs="0" name="userName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaExpedientesDesclasificaResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="documentoGeneradoDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentoXML" type="tns:documentoXMLDto"/>
+      <xs:element minOccurs="0" name="idDocumentoGenerado" type="xs:string"/>
+      <xs:element minOccurs="0" name="nombreDocumentoGenerado" type="xs:string"/>
+      <xs:element minOccurs="0" name="rutaDocumentoGenerado" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="documentoXMLDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" name="nombreDocumento" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistDemoras">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistDemorasBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistDemorasBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="analistaNombreRubrica" type="xs:string"/>
+          <xs:element minOccurs="0" name="crudo" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentacionSoporteCobro" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentacionSoporteCobroC" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentacionSoportePago" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentacionSoportePagoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaCalculoFinal" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaCalculoFinalC" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombreFirma" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreBarco" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaInformativa" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaInformativaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroFolios" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenFletamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenesRelacionadas" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar2" type="xs:string"/>
+          <xs:element minOccurs="0" name="productos" type="xs:string"/>
+          <xs:element minOccurs="0" name="reclamoIncialCalculoInicialContraparte" type="xs:string"/>
+          <xs:element minOccurs="0" name="reclamoIncialCalculoInicialContraparteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="reclamoInicialCalculoInicialPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="reclamoInicialCalculoInicialPmiC" type="xs:string"/>
+          <xs:element minOccurs="0" name="respaldoNegociacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="respaldoNegociacionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudCobroTesoreria" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudCobroTesoreriaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudPagoTesoreria" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudPagoTesoreriaC" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistDemorasResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistComercial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistComercialBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistComercialBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comprobanteEnvioContraparteD" type="xs:string"/>
+          <xs:element minOccurs="0" name="comprobanteEnvioContraparteF" type="xs:string"/>
+          <xs:element minOccurs="0" name="comprobanteEnvioContraparteNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionComercialPemexD" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionComercialPemexF" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionComercialPemexNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionContraparteD" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionContraparteF" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionContraparteNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractAmendmentD" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractAmendmentF" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractAmendmentNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractD" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractF" type="xs:string"/>
+          <xs:element minOccurs="0" name="contractNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractAmendmentD" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractAmendmentF" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractAmendmentNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractD" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractF" type="xs:string"/>
+          <xs:element minOccurs="0" name="counterpartyContractNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealSheetD" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealSheetF" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealSheetNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentosVariosD" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentosVariosF" type="xs:string"/>
+          <xs:element minOccurs="0" name="documentosVariosNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombrePuestoFirma" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionConfirmacionComercialPemexD" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionConfirmacionComercialPemexF" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionConfirmacionComercialPemexNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaMercadoD" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaMercadoF" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaMercadoNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficioRequerimientoDisponibilidadD" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficioRequerimientoDisponibilidadF" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficioRequerimientoDisponibilidadNP" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenRelacionada" type="xs:string"/>
+          <xs:element minOccurs="0" name="producto" type="xs:string"/>
+          <xs:element minOccurs="0" name="revisoNombrePuestoFirma" type="xs:string"/>
+          <xs:element minOccurs="0" name="soporteInteligenciaMercadoD" type="xs:string"/>
+          <xs:element minOccurs="0" name="soporteInteligenciaMercadoF" type="xs:string"/>
+          <xs:element minOccurs="0" name="soporteInteligenciaMercadoNP" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistComercialResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaInTransferenciaPrimariaSecundaria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:inTransferenciaPrimariaSecundariaBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:inTransferenciaPrimariaSecundariaTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inTransferenciaPrimariaSecundariaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anio" type="xs:string"/>
+          <xs:element minOccurs="0" name="areaProcedenciaGeneradora" type="xs:string"/>
+          <xs:element minOccurs="0" name="baja" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoElaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="concentracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="de" type="xs:string"/>
+          <xs:element minOccurs="0" name="elaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaRecepcionAnio" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaRecepcionDia" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaRecepcionMes" type="xs:string"/>
+          <xs:element minOccurs="0" name="historico" type="xs:string"/>
+          <xs:element minOccurs="0" name="numero" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroTotalCajas" type="xs:string"/>
+          <xs:element minOccurs="0" name="pagNo" type="xs:string"/>
+          <xs:element minOccurs="0" name="pesoTotalKilogramos" type="xs:string"/>
+          <xs:element minOccurs="0" name="responsableArchivoConcentracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="responsableArchivoTramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumentacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramiteResguardo" type="xs:string"/>
+          <xs:element minOccurs="0" name="transferencia" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdministrativa" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inTransferenciaPrimariaSecundariaTablaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="clasificacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="descripcionExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="disposiscion" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaApertura" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaCierre" type="xs:string"/>
+          <xs:element minOccurs="0" name="noCaja" type="xs:string"/>
+          <xs:element minOccurs="0" name="noTomo" type="xs:string"/>
+          <xs:element minOccurs="0" name="numExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoConcentracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoTramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="serie" type="xs:string"/>
+          <xs:element minOccurs="0" name="totalExpedientes" type="xs:string"/>
+          <xs:element minOccurs="0" name="totalFojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="ubicacionTopografica" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaInTransferenciaPrimariaSecundariaResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistReclamos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistReclamosBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistReclamosBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acuerdos" type="xs:string"/>
+          <xs:element minOccurs="0" name="acuerdosC" type="xs:string"/>
+          <xs:element minOccurs="0" name="comunicaciones" type="xs:string"/>
+          <xs:element minOccurs="0" name="comunicacionesC" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoAjusteVolumen" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoAjusteVolumenC" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisTemperaturaCargamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisTemperaturaCargamentoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisVef" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisVefC" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisViajeCargaDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisViajeCargaDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisVolumenBarco" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaAnalisisVolumenBarcoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaInformativa" type="xs:string"/>
+          <xs:element minOccurs="0" name="notaInformativaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="notificacionReclamo" type="xs:string"/>
+          <xs:element minOccurs="0" name="notificacionReclamoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenFletamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPemex" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteReanaisisLaboratorio" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteReanaisisLaboratorioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudCobroTesoreria" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudCobroTesoreriaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudPagoTesoreria" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudPagoTesoreriaC" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistReclamosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prueba">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:valePrestamoBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:valePrestamoTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="arg4" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="valePrestamoBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="areaProcedencia" type="xs:string"/>
+          <xs:element minOccurs="0" name="auditoria" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoAutoriza" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoQuienEntrega" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoSolicitante" type="xs:string"/>
+          <xs:element minOccurs="0" name="concentracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="consulta" type="xs:string"/>
+          <xs:element minOccurs="0" name="direccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaPrestamoAnio" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaPrestamoDia" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaPrestamoMes" type="xs:string"/>
+          <xs:element minOccurs="0" name="folio" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreAutoriza" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreQuienEntrega" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreSolicitante" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitante" type="xs:string"/>
+          <xs:element minOccurs="0" name="solicitudInformacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefonoExtension" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramiteInterno" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramiteResguardo" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdministrativa" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="valePrestamoTablaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fechaDevolucion" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaProroga" type="xs:string"/>
+          <xs:element minOccurs="0" name="numExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="numOrden" type="xs:string"/>
+          <xs:element minOccurs="0" name="totalExpedientes" type="xs:string"/>
+          <xs:element minOccurs="0" name="totalPagDigital" type="xs:string"/>
+          <xs:element minOccurs="0" name="totalPagFisica" type="xs:string"/>
+          <xs:element minOccurs="0" name="ubicacionTopografica" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="pruebaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaCaratula">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:caratulaBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caratulaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaAsunto" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaFechaAperturaExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaFechaCierreExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaNombreResponsableIntegracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaSeccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaSerie" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionArchivisticaSubserie" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionConfidencial" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionFechaClasificacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="clasificacionReservada" type="xs:string"/>
+          <xs:element minOccurs="0" name="desclasificacionFecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="desclasificacionNombreTitularUnidad" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoAdicionalDesclasificacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoAdicionalNoExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoAdicionalNoHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoAdicionalNoPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoAdicionalSolicitudAcceso" type="xs:string"/>
+          <xs:element minOccurs="0" name="plazoConservacionArchivoConcentracion" type="xs:string"/>
+          <xs:element minOccurs="0" name="plazoConservacionArchivoTramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaAl" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaAmplicacionAl" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaAmplicacionDel" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaDel" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaFundamentoLegal" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaNombreTitularUnidad" type="xs:string"/>
+          <xs:element minOccurs="0" name="reservaOtros" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdminsitrativa" type="xs:string"/>
+          <xs:element minOccurs="0" name="valorDocumentalAdministrativo" type="xs:string"/>
+          <xs:element minOccurs="0" name="valorDocumentalFinanciero" type="xs:string"/>
+          <xs:element minOccurs="0" name="valorDocumentalLegal" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaCaratulaResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaGuiaSimple">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:guiaSimpleBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:guiaSimpleTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guiaSimpleBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="areaProcedencia" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoElaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoRat" type="xs:string"/>
+          <xs:element minOccurs="0" name="cargoReviso" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoElectronico" type="xs:string"/>
+          <xs:element minOccurs="0" name="direccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="elaboro" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaAnio" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaDia" type="xs:string"/>
+          <xs:element minOccurs="0" name="fechaMes" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreRat" type="xs:string"/>
+          <xs:element minOccurs="0" name="responsableArchivoTramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="reviso" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefono" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdministrativa" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="guiaSimpleTablaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="numExpediente" type="xs:string"/>
+          <xs:element minOccurs="0" name="ubicacionTopografica" type="xs:string"/>
+          <xs:element minOccurs="0" name="volumenTotalArchTramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="volumenTotalGenerados" type="xs:string"/>
+          <xs:element minOccurs="0" name="volumenTotalTransPrimaria" type="xs:string"/>
+          <xs:element minOccurs="0" name="volumenTotalTransSecundaria" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaGuiaSimpleResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaIndiceExpedientesReserva">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:indiceExpedientesReservaBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:indiceExpedientesReservaTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="indiceExpedientesReservaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="articuloFraccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="atribucion" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreLey" type="xs:string"/>
+          <xs:element minOccurs="0" name="periodoReserva" type="xs:string"/>
+          <xs:element minOccurs="0" name="rubroTematico" type="xs:string"/>
+          <xs:element minOccurs="0" name="titular" type="xs:string"/>
+          <xs:element minOccurs="0" name="unidadAdministrativa" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="indiceExpedientesReservaTablaBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fechaClasificacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="numExpediente" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaIndiceExpedientesReservaResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistMaritimo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistMaritimoBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistMaritimoBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="aceptacionBuqueTanque" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionBuqueTanqueC" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionServicioInspeccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionServicioInspeccionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="acuseReciboCapitan" type="xs:string"/>
+          <xs:element minOccurs="0" name="acuseReciboCapitanC" type="xs:string"/>
+          <xs:element minOccurs="0" name="allocation" type="xs:string"/>
+          <xs:element minOccurs="0" name="autorizacionEmbarqueTipoPago" type="xs:string"/>
+          <xs:element minOccurs="0" name="autorizacionEmbarqueTipoPagoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoImportacionPemex" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoImportacionPemexC" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoListoPuertoCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoListoPuertoCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoListoPuertoDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoListoPuertoDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaIndemnidad" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaIndemnidadC" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaProtesta" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaProtestaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigen" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenC" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenCamaraComercio" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenCamaraComercioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionVolumenPrecioCompraVenta" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionVolumenPrecioCompraVentaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="conocimientoEmbarque" type="xs:string"/>
+          <xs:element minOccurs="0" name="conocimientoEmbarqueC" type="xs:string"/>
+          <xs:element minOccurs="0" name="crudo" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioDocumentosCliente" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioDocumentosClienteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="estadoHechosPuertoCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="estadoHechosPuertoCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="estadoHechosPuertoDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="estadoHechosPuertoDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="etasEmbarcacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="etasEmbarcacionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="facturaProforma" type="xs:string"/>
+          <xs:element minOccurs="0" name="facturaProformaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojasCalculoPrecio" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojasCalculoPrecioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionAditivacionProducto" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionAditivacionProductoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionCargamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionCargamentoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionDocumentacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionDocumentacionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionEmbarqueAgenteAduanal" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionEmbarqueAgenteAduanalC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionesViaje" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionesViajeC" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="manifiestoCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="manifiestoCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionesPrograma" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionesProgramaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreBarco" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccionCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccionCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccionDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccionDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroFolios" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="operadorNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenFletamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenesRelacionadas" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar2" type="xs:string"/>
+          <xs:element minOccurs="0" name="productos" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionPuertoCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionPuertoCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionPuertoDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionPuertoDescargaC" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistMaritimoResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistFletamentos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistFletamentosBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistFletamentosBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="aceptacionAreaComercial" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionAreaComercialC" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionAreaComercialN" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionAreaVettingEmbarcacion" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionAreaVettingEmbarcacionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionAreaVettingEmbarcacionN" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionClienteProveedorEmbarcacionNominadoPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionClienteProveedorEmbarcacionNominadoPmiC" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionClienteProveedorEmbarcacionNominadoPmiN" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentos" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentosC" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentosN" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentosPreliminar" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentosPreliminarC" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoFletamentosPreliminarN" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoComercial" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoComercialC" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoComercialN" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioNominacionClienteProveedor" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioNominacionClienteProveedorC" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioNominacionClienteProveedorN" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="formatoCuestionarioCumplimentado" type="xs:string"/>
+          <xs:element minOccurs="0" name="formatoCuestionarioCumplimentadoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="formatoCuestionarioCumplimentadoN" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="levantamientoSujetos" type="xs:string"/>
+          <xs:element minOccurs="0" name="levantamientoSujetosC" type="xs:string"/>
+          <xs:element minOccurs="0" name="levantamientoSujetosN" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreBT" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroFolios" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="ofertasBrokersArmadores" type="xs:string"/>
+          <xs:element minOccurs="0" name="ofertasBrokersArmadoresC" type="xs:string"/>
+          <xs:element minOccurs="0" name="ofertasBrokersArmadoresN" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenFletamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPemex" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="revisoNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoContrato" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistFletamentosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistComCrudo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistComCrudoBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistComCrudoBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comunicacionesAlCliente" type="xs:string"/>
+          <xs:element minOccurs="0" name="comunicacionesAlClienteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="comunicacionesDelCliente" type="xs:string"/>
+          <xs:element minOccurs="0" name="comunicacionesDelClienteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionCartaCredito" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionCartaCreditoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionCompraVenta" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionCompraVentaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoSimple" type="xs:string"/>
+          <xs:element minOccurs="0" name="contratoSimpleC" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionesPrograma" type="xs:string"/>
+          <xs:element minOccurs="0" name="modificacionesProgramaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="numHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficioPemexDisponibilidad" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficioPemexDisponibilidadC" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficiosPep" type="xs:string"/>
+          <xs:element minOccurs="0" name="oficiosPepC" type="xs:string"/>
+          <xs:element minOccurs="0" name="programaContractualPrevisto" type="xs:string"/>
+          <xs:element minOccurs="0" name="programaContractualPrevistoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="recap" type="xs:string"/>
+          <xs:element minOccurs="0" name="recapC" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistComCrudoResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistTerrestre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checklistTerrestreBean"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:generadorBean"/>
+      <xs:element name="arg2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checklistTerrestreBean">
+    <xs:complexContent>
+      <xs:extension base="tns:padreBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="aceptacionServicioInspeccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="aceptacionServicioInspeccionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="ajusteVolumenPrecio" type="xs:string"/>
+          <xs:element minOccurs="0" name="ajusteVolumenPrecioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="allocation" type="xs:string"/>
+          <xs:element minOccurs="0" name="autotransporte" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoCargaEntrega" type="xs:string"/>
+          <xs:element minOccurs="0" name="avisoCargaEntregaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaProtesta" type="xs:string"/>
+          <xs:element minOccurs="0" name="cartaProtestaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigen" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenC" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenCamaraComercio" type="xs:string"/>
+          <xs:element minOccurs="0" name="certificadoOrigenCamaraComercioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionBookingMultimodal" type="xs:string"/>
+          <xs:element minOccurs="0" name="confirmacionBookingMultimodalC" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoAutorizacionEmbarqueTipoPago" type="xs:string"/>
+          <xs:element minOccurs="0" name="correoAutorizacionEmbarqueTipoPagoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="ducto" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioDocumentosCliente" type="xs:string"/>
+          <xs:element minOccurs="0" name="envioDocumentosClienteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="facturaProforma" type="xs:string"/>
+          <xs:element minOccurs="0" name="facturaProformaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="fecha" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaCalculoPrecio" type="xs:string"/>
+          <xs:element minOccurs="0" name="hojaCalculoPrecioC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionAditivacionProducto" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionAditivacionProductoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionEmbarqueAgenteAduanal" type="xs:string"/>
+          <xs:element minOccurs="0" name="instruccionEmbarqueAgenteAduanalC" type="xs:string"/>
+          <xs:element minOccurs="0" name="integroNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="multimodal" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccion" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionInspeccionC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionServiciosTerminal" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionServiciosTerminalC" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionTransportista" type="xs:string"/>
+          <xs:element minOccurs="0" name="nominacionTransportistaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroFolios" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroHojas" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroPaginas" type="xs:string"/>
+          <xs:element minOccurs="0" name="operadorNombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenPmi" type="xs:string"/>
+          <xs:element minOccurs="0" name="ordenesRelacionadas" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar" type="xs:string"/>
+          <xs:element minOccurs="0" name="otrosEspecificar2" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCalidadCantidadCarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCalidadCantidadCargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCalidadCantidadDescarga" type="xs:string"/>
+          <xs:element minOccurs="0" name="reporteInspeccionCalidadCantidadDescargaC" type="xs:string"/>
+          <xs:element minOccurs="0" name="talonEmbarqueCartaPorte" type="xs:string"/>
+          <xs:element minOccurs="0" name="talonEmbarqueCartaPorteC" type="xs:string"/>
+          <xs:element minOccurs="0" name="ticketBombeoDucto" type="xs:string"/>
+          <xs:element minOccurs="0" name="ticketBombeoDuctoC" type="xs:string"/>
+          <xs:element minOccurs="0" name="transportista" type="xs:string"/>
+          <xs:element minOccurs="0" name="tFerroviario" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="generaChecklistTerrestreResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaValePrestamo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:valePrestamoBean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:valePrestamoTablaBean"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:generadorBean"/>
+      <xs:element name="arg3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaValePrestamoResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoGeneradoDto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DfException" type="tns:DfException"/>
+  <xs:complexType name="DfException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="messageId" type="xs:string"/>
+      <xs:element minOccurs="0" name="threadInfo" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arguments" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="count" type="xs:int"/>
+      <xs:element minOccurs="0" name="stackTraceAsString" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

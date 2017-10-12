@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="GeneradorDocxImplService" targetNamespace="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/" schemaLocation="generadordocximpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="generaExpedientesDesclasifica">
+    <wsdl:part name="parameters" element="tns:generaExpedientesDesclasifica">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistDemorasResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistDemorasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistTerrestreResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistTerrestreResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DfException">
+    <wsdl:part name="DfException" element="tns:DfException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaGuiaSimpleResponse">
+    <wsdl:part name="parameters" element="tns:generaGuiaSimpleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistReclamos">
+    <wsdl:part name="parameters" element="tns:generaChecklistReclamos">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prueba">
+    <wsdl:part name="parameters" element="tns:prueba">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistFletamentosResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistFletamentosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaInTransferenciaPrimariaSecundariaResponse">
+    <wsdl:part name="parameters" element="tns:generaInTransferenciaPrimariaSecundariaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaCaratula">
+    <wsdl:part name="parameters" element="tns:generaCaratula">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaValePrestamoResponse">
+    <wsdl:part name="parameters" element="tns:generaValePrestamoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaIndiceExpedientesReserva">
+    <wsdl:part name="parameters" element="tns:generaIndiceExpedientesReserva">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pruebaResponse">
+    <wsdl:part name="parameters" element="tns:pruebaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistFletamentos">
+    <wsdl:part name="parameters" element="tns:generaChecklistFletamentos">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaIndiceExpedientesReservaResponse">
+    <wsdl:part name="parameters" element="tns:generaIndiceExpedientesReservaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaValePrestamo">
+    <wsdl:part name="parameters" element="tns:generaValePrestamo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistDemoras">
+    <wsdl:part name="parameters" element="tns:generaChecklistDemoras">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistComercial">
+    <wsdl:part name="parameters" element="tns:generaChecklistComercial">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaInTransferenciaPrimariaSecundaria">
+    <wsdl:part name="parameters" element="tns:generaInTransferenciaPrimariaSecundaria">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistMaritimoResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistMaritimoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaExpedientesDesclasificaResponse">
+    <wsdl:part name="parameters" element="tns:generaExpedientesDesclasificaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaGuiaSimple">
+    <wsdl:part name="parameters" element="tns:generaGuiaSimple">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistComercialResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistComercialResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaCaratulaResponse">
+    <wsdl:part name="parameters" element="tns:generaCaratulaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistMaritimo">
+    <wsdl:part name="parameters" element="tns:generaChecklistMaritimo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistComCrudo">
+    <wsdl:part name="parameters" element="tns:generaChecklistComCrudo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistReclamosResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistReclamosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistComCrudoResponse">
+    <wsdl:part name="parameters" element="tns:generaChecklistComCrudoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaChecklistTerrestre">
+    <wsdl:part name="parameters" element="tns:generaChecklistTerrestre">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GeneradorWs">
+    <wsdl:operation name="generaExpedientesDesclasifica">
+      <wsdl:input name="generaExpedientesDesclasifica" message="tns:generaExpedientesDesclasifica">
+    </wsdl:input>
+      <wsdl:output name="generaExpedientesDesclasificaResponse" message="tns:generaExpedientesDesclasificaResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistDemoras">
+      <wsdl:input name="generaChecklistDemoras" message="tns:generaChecklistDemoras">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistDemorasResponse" message="tns:generaChecklistDemorasResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistComercial">
+      <wsdl:input name="generaChecklistComercial" message="tns:generaChecklistComercial">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistComercialResponse" message="tns:generaChecklistComercialResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaInTransferenciaPrimariaSecundaria">
+      <wsdl:input name="generaInTransferenciaPrimariaSecundaria" message="tns:generaInTransferenciaPrimariaSecundaria">
+    </wsdl:input>
+      <wsdl:output name="generaInTransferenciaPrimariaSecundariaResponse" message="tns:generaInTransferenciaPrimariaSecundariaResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistReclamos">
+      <wsdl:input name="generaChecklistReclamos" message="tns:generaChecklistReclamos">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistReclamosResponse" message="tns:generaChecklistReclamosResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prueba">
+      <wsdl:input name="prueba" message="tns:prueba">
+    </wsdl:input>
+      <wsdl:output name="pruebaResponse" message="tns:pruebaResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaCaratula">
+      <wsdl:input name="generaCaratula" message="tns:generaCaratula">
+    </wsdl:input>
+      <wsdl:output name="generaCaratulaResponse" message="tns:generaCaratulaResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaGuiaSimple">
+      <wsdl:input name="generaGuiaSimple" message="tns:generaGuiaSimple">
+    </wsdl:input>
+      <wsdl:output name="generaGuiaSimpleResponse" message="tns:generaGuiaSimpleResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaIndiceExpedientesReserva">
+      <wsdl:input name="generaIndiceExpedientesReserva" message="tns:generaIndiceExpedientesReserva">
+    </wsdl:input>
+      <wsdl:output name="generaIndiceExpedientesReservaResponse" message="tns:generaIndiceExpedientesReservaResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistMaritimo">
+      <wsdl:input name="generaChecklistMaritimo" message="tns:generaChecklistMaritimo">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistMaritimoResponse" message="tns:generaChecklistMaritimoResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistFletamentos">
+      <wsdl:input name="generaChecklistFletamentos" message="tns:generaChecklistFletamentos">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistFletamentosResponse" message="tns:generaChecklistFletamentosResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistComCrudo">
+      <wsdl:input name="generaChecklistComCrudo" message="tns:generaChecklistComCrudo">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistComCrudoResponse" message="tns:generaChecklistComCrudoResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistTerrestre">
+      <wsdl:input name="generaChecklistTerrestre" message="tns:generaChecklistTerrestre">
+    </wsdl:input>
+      <wsdl:output name="generaChecklistTerrestreResponse" message="tns:generaChecklistTerrestreResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaValePrestamo">
+      <wsdl:input name="generaValePrestamo" message="tns:generaValePrestamo">
+    </wsdl:input>
+      <wsdl:output name="generaValePrestamoResponse" message="tns:generaValePrestamoResponse">
+    </wsdl:output>
+      <wsdl:fault name="DfException" message="tns:DfException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GeneradorDocxImplServiceSoapBinding" type="tns:GeneradorWs">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generaExpedientesDesclasifica">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaExpedientesDesclasifica">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaExpedientesDesclasificaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistDemoras">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistDemoras">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistDemorasResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistComercial">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistComercial">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistComercialResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaInTransferenciaPrimariaSecundaria">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaInTransferenciaPrimariaSecundaria">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaInTransferenciaPrimariaSecundariaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistReclamos">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistReclamos">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistReclamosResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prueba">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="prueba">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pruebaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaCaratula">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaCaratula">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaCaratulaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaGuiaSimple">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaGuiaSimple">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaGuiaSimpleResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaIndiceExpedientesReserva">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaIndiceExpedientesReserva">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaIndiceExpedientesReservaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistMaritimo">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistMaritimo">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistMaritimoResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistFletamentos">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistFletamentos">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistFletamentosResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistComCrudo">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistComCrudo">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistComCrudoResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaChecklistTerrestre">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaChecklistTerrestre">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaChecklistTerrestreResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaValePrestamo">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="generaValePrestamo">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaValePrestamoResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DfException">
+        <soap12:fault name="DfException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GeneradorDocxImplService">
+    <wsdl:port name="GeneradorDocxImplPort" binding="tns:GeneradorDocxImplServiceSoapBinding">
+      <soap12:address location="http://localhost:8080/GeneradorWs2/services/GeneradorDocxImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

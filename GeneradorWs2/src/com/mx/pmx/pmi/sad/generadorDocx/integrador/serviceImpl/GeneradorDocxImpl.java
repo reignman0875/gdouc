@@ -32,9 +32,11 @@ import com.mx.pmx.pmi.sad.generadorDocx.core.serviceImpl.TransformarDocumentoSer
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.CaratulaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistComCrudoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistComercialBean;
+import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistComercialEstadoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistDemorasBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistFletamentosBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistMaritimoBean;
+import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistOperativoEstadoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistReclamosBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistTerrestreBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ExpedientesDesclasificaBean;
@@ -144,6 +146,14 @@ public class GeneradorDocxImpl implements GeneradorWs {
 					generaChecklistsTerrestre(asuntoSubexpediente, numeroExpediente, generadorBean);
 				} else if (asuntoSubexpediente.equals("Fletamentos")) {
 					generaChecklistsFletamentos(asuntoSubexpediente, numeroExpediente, generadorBean);
+				}
+				//TODO: TO-DO Actualizar asuntoSubExpediente OperativoEstado
+				else if (asuntoSubexpediente.equals("OperativoEstado")) {
+					generaChecklistsOperativoEstado(asuntoSubexpediente, numeroExpediente, generadorBean);
+				} 
+				//TODO: TO-DO Actualizar asuntoSubExpediente ComercialEstado
+				else if (asuntoSubexpediente.equals("ComercialEstado")) {
+					generaChecklistsComercialEstado(asuntoSubexpediente, numeroExpediente, generadorBean);
 				}
 				// Reclamos por demora
 				else if (asuntoSubexpediente.equals("PMI-14E.58.1")) {
@@ -616,6 +626,121 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				generadorBean.setNombreDoc(checklistFletamentosBean.getOrdenFletamento());
 				generadorDocxImpl.generaChecklistFletamentos(checklistFletamentosBean, generadorBean, orden);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DfException(e.getMessage());
+		}
+	}
+	
+	private void generaChecklistsOperativoEstado(String asuntoSubexpediente, String numeroExpediente,
+			GeneradorBean generadorBean) throws DfException {
+		try {
+			IntegradorDocx integradorDocx = new IntegradorDocx();
+			GeneradorDocxImpl generadorDocxImpl = new GeneradorDocxImpl();
+			List<ChecklistOperativoEstadoBean> listChecklistOperativoEstadoBean = integradorDocx
+					.integraChecklistsOperativoEstado(asuntoSubexpediente, numeroExpediente, generadorBean.getUserName());
+			Iterator<ChecklistOperativoEstadoBean> iteratorChecklistOperativoEstadoBean = listChecklistOperativoEstadoBean
+					.iterator();
+			ChecklistOperativoEstadoBean checklistOperativoEstadoBean = null;
+			Map<String, String> orden = new HashMap<String, String>();
+			while (iteratorChecklistOperativoEstadoBean.hasNext()) {
+				checklistOperativoEstadoBean = iteratorChecklistOperativoEstadoBean.next();
+				orden.put("ordenrelacionada", checklistOperativoEstadoBean.getOrdenPmi());
+				generadorBean.setNombreDoc(checklistOperativoEstadoBean.getOrdenPmi());
+				generadorDocxImpl.generaChecklistOperativoEstado(checklistOperativoEstadoBean, generadorBean, orden);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DfException(e.getMessage());
+		}
+	}
+	
+	public List<DocumentoGeneradoDto> generaChecklistOperativoEstado(ChecklistOperativoEstadoBean paramBean,
+			GeneradorBean generadorBean, Map<String, String> parametros) throws DfException {
+		try {
+			// if(parametros!=null && parametros.size()==2){
+			// generaChecklistsMaritimo(parametros.get("asuntoSubexpediente"),
+			// parametros.get("numeroExpediente"), generadorBean);
+			// return null;
+			// }
+			// else {
+			List<Map<String, String>> contenidoTabla;
+			String[] idTabla;
+			contenidoTabla = null;
+			idTabla = null;
+			UsuarioDto usuarioDto = new UsuarioDto();
+			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();
+			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
+			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
+			//TODO: TO-DO Actualizar ID de plantilla
+			parametrosDocumentoDto.setIdDocumentoPlantilla("090000018000e604");
+			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
+			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());
+			parametrosDocumentoDto.setRutaXml(generadorBean.getRutaXML());
+			parametrosDocumentoDto.setXmlDatos(jaxbObjectToXML(paramBean));
+			listaParametros.add(parametrosDocumentoDto);
+			List<DocumentoGeneradoDto> listaDocumentosGenerados = transformarDocumentoService.crearDocumentoDOCX(
+					usuarioDto, (List<ParametrosDocumentoDto>) listaParametros, contenidoTabla, idTabla, false,
+					generadorBean.getUserName(), parametros);
+			return listaDocumentosGenerados;
+			// }
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DfException(e.getMessage());
+		}
+	}
+	
+	private void generaChecklistsComercialEstado(String asuntoSubexpediente, String numeroExpediente,
+			GeneradorBean generadorBean) throws DfException {
+		try {
+			IntegradorDocx integradorDocx = new IntegradorDocx();
+			GeneradorDocxImpl generadorDocxImpl = new GeneradorDocxImpl();
+			List<ChecklistComercialEstadoBean> listChecklistComercialEstadoBean = integradorDocx
+					.integraChecklistsComercialEstado(asuntoSubexpediente, numeroExpediente, generadorBean.getUserName());
+			Iterator<ChecklistComercialEstadoBean> iteratorChecklistComercialEstadoBean = listChecklistComercialEstadoBean
+					.iterator();
+			ChecklistComercialEstadoBean checklistComercialEstadoBean = null;
+			Map<String, String> orden = new HashMap<String, String>();
+			while (iteratorChecklistComercialEstadoBean.hasNext()) {
+				checklistComercialEstadoBean = iteratorChecklistComercialEstadoBean.next();
+				orden.put("ordenrelacionada", checklistComercialEstadoBean.getOrdenExpediente());
+				generadorBean.setNombreDoc(checklistComercialEstadoBean.getOrdenExpediente());
+				generadorDocxImpl.generaChecklistComercialEstado(checklistComercialEstadoBean, generadorBean, orden);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DfException(e.getMessage());
+		}
+	}
+	public List<DocumentoGeneradoDto> generaChecklistComercialEstado(ChecklistComercialEstadoBean paramBean,
+			GeneradorBean generadorBean, Map<String, String> parametros) throws DfException {
+		try {
+			// if(parametros!=null && parametros.size()>0){
+			// generaChecklistsComCrudo(parametros.get("asuntoSubexpediente"),
+			// parametros.get("numeroExpediente"), generadorBean);
+			// return null;
+			// }
+			// else {
+			List<Map<String, String>> contenidoTabla;
+			String[] idTabla;
+			contenidoTabla = null;
+			idTabla = null;
+			UsuarioDto usuarioDto = new UsuarioDto();
+			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();
+			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
+			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
+			//TODO: TO-DO Actualiza id de la plantilla
+			parametrosDocumentoDto.setIdDocumentoPlantilla("090000018000e601");
+			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
+			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());
+			parametrosDocumentoDto.setRutaXml(generadorBean.getRutaXML());
+			parametrosDocumentoDto.setXmlDatos(jaxbObjectToXML(paramBean));
+			listaParametros.add(parametrosDocumentoDto);
+			List<DocumentoGeneradoDto> listaDocumentosGenerados = transformarDocumentoService.crearDocumentoDOCX(
+					usuarioDto, (List<ParametrosDocumentoDto>) listaParametros, contenidoTabla, idTabla, false,
+					generadorBean.getUserName(), parametros);
+			return listaDocumentosGenerados;
+			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DfException(e.getMessage());

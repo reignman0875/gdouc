@@ -1128,7 +1128,6 @@ public class IntegradorDocx {
 		return es;
 	}
 
-	
 	public List<Map<String, String>> integraTablaExpedientesComun(
 			String numeroExpediente, String userLT) throws DfException {
 		List<Map<String, String>> es = new ArrayList<Map<String, String>>();

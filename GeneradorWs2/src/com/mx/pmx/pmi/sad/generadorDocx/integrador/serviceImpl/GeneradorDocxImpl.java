@@ -147,12 +147,11 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				} else if (asuntoSubexpediente.equals("Fletamentos")) {
 					generaChecklistsFletamentos(asuntoSubexpediente, numeroExpediente, generadorBean);
 				}
-				//TODO: TO-DO Actualizar asuntoSubExpediente OperativoEstado
-				else if (asuntoSubexpediente.equals("OperativoEstado")) {
+				else if (asuntoSubexpediente.equals("Operativo")) {
 					generaChecklistsOperativoEstado(asuntoSubexpediente, numeroExpediente, generadorBean);
 				} 
-				//TODO: TO-DO Actualizar asuntoSubExpediente ComercialEstado
-				else if (asuntoSubexpediente.equals("ComercialEstado")) {
+
+				else if (asuntoSubexpediente.equals("Comercial")) {
 					generaChecklistsComercialEstado(asuntoSubexpediente, numeroExpediente, generadorBean);
 				}
 				// Reclamos por demora

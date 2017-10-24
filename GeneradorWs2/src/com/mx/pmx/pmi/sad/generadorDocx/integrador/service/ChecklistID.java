@@ -134,4 +134,33 @@ public interface ChecklistID {
 	public static String Solicitud_de_cobro_a_tesoreria = "413";
 	public static String Solicitud_de_pago_a_tesoreria = "421";
 	public static String Comunicaciones = "84";
+	
+	public static String ChecklistsComercialEstado = "8";
+	
+	public static String Distribucion_de_ingresos_comprador = "704";
+	public static String Calculo_de_precio_comercializador = "705";
+	public static String Calculo_de_precio_comprador = "706";
+	public static String Correo_de_CNH  = "707";
+	public static String Memorandum_de_solicitud_a_tesoreria = "708";
+	public static String Comunicaciones_con_CNH = "709";
+	public static String Comunicaciones_con_comprador = "710";
+	public static String Comunicaciones_con_contratista = "711";
+	public static String Comunicaciones_con_FMP = "712";
+	public static String Comunicaciones_con_CRE = "713";
+	public static String Otros_Comercial_Estado = "714";
+	
+	public static String ChecklistsOperativoEstado = "9";
+	
+	public static String Nominaciones_mensuales = "715";
+	public static String Registros_de_entrega_diarios = "716";
+	public static String Certificados_de_calidad_cantidad = "717";
+	public static String Comprobantes_actas_de_entrega_recepcion_contratista = "718";
+	public static String Comprobantes_actas_de_entrega_recepcion_comprador = "719";
+	public static String Documentos_de_transporte = "720";
+	public static String Documentos_aduanales = "721";
+	public static String Documentos_de_soporte_de_reclamos_demora = "722";
+	public static String Nominaciones_de_servicios_logisticos = "726";
+	public static String Otros = "723";
+
+	
 }

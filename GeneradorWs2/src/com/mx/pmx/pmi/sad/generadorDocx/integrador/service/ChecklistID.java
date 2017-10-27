@@ -160,7 +160,7 @@ public interface ChecklistID {
 	public static String Documentos_aduanales = "721";
 	public static String Documentos_de_soporte_de_reclamos_demora = "722";
 	public static String Nominaciones_de_servicios_logisticos = "726";
-	public static String Otros = "723";
+	public static String Otros_Operativo_Estado = "723";
 
 	
 }

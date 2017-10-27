@@ -1328,85 +1328,88 @@ public class IntegradorDocx {
 	
 	private ChecklistOperativoEstadoBean registraChecklistOperativoEstado(ChecklistOperativoEstadoBean bean, String idDocumento,
 			String descripcion, int seleccionado, int digital) {
-		//TODO: TO-DO Actualizar checkeds del documento
-//		if (idDocumento.trim().equals(ChecklistID.Aviso_de_carga_entrega) && seleccionado == seleccionadoDoc) {
-//			bean.setAvisoCargaEntrega(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Confirmacion_de_booking_multimodal)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setConfirmacionBookingMultimodal(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Factura_proforma) && seleccionado == seleccionadoDoc) {
-//			bean.setFacturaProforma(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Instruccion_de_embarque_para_agente_aduanal)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setInstruccionEmbarqueAgenteAduanal(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Instruccion_para_aditivacion_de_producto)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setInstruccionAditivacionProducto(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Aceptacion_de_servicio_de_inspeccion)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setAceptacionServicioInspeccion(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Ajuste_en_volumen_o_precio) && seleccionado == seleccionadoDoc) {
-//			bean.setAjusteVolumenPrecio(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Nominacion_al_transportista) && seleccionado == seleccionadoDoc) {
-//			bean.setNominacionTransportista(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Nominacion_de_carga) && seleccionado == seleccionadoDoc) {
-//			bean.setNominacionCarga(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Nominacion_de_descarga) && seleccionado == seleccionadoDoc) {
-//			bean.setNominacionDescarga(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Nominacion_de_inspeccion) && seleccionado == seleccionadoDoc) {
-//			bean.setNominacionInspeccion(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Nominacion_de_servicios_de_terminal)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setNominacionServiciosTerminal(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Carta_protesta) && seleccionado == seleccionadoDoc) {
-//			bean.setCartaProtesta(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Certificado_de_origen) && seleccionado == seleccionadoDoc) {
-//			bean.setCertificadoOrigen(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Certificado_de_origen_camara_de_comercio)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setCertificadoOrigenCamaraComercio(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Correo_de_autorizacion_de_embarque_por_tipo_de_pago)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setCorreoAutorizacionEmbarqueTipoPago(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Hojas_de_calculo_de_precio) && seleccionado == seleccionadoDoc) {
-//			bean.setHojaCalculoPrecio(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Reporte_de_inspeccion_calidad_y_cantidad_a_la_carga)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setReporteInspeccionCalidadCantidadCarga(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Reporte_de_inspeccion_calidad_y_cantidad_a_la_descarga)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setReporteInspeccionCalidadCantidadDescarga(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Otros_especificarTer) && seleccionado == seleccionadoDoc) {
-//			bean.setOtrosEspecificar(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Talon_de_embarque_carta_porte) && seleccionado == seleccionadoDoc) {
-//			bean.setTalonEmbarqueCartaPorte(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Ticket_de_bombeo_ducto) && seleccionado == seleccionadoDoc) {
-//			bean.setTicketBombeoDucto(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Envio_de_documentos_al_cliente) && seleccionado == seleccionadoDoc) {
-//			bean.setEnvioDocumentosCliente(checked);
-//		}
+		
+		if (idDocumento.trim().equals(ChecklistID.Nominaciones_mensuales)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setNominacionesMensuales(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setNominacionesMensualesC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Registros_de_entrega_diarios)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setRegistrosEntregaDiarios(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setRegistrosEntregaDiariosC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Certificados_de_calidad_cantidad)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setCertificadoCalidadCantidad(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setCertificadoCalidadCantidadC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comprobantes_actas_de_entrega_recepcion_contratista)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setActaEntregaRecepcionContratista(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setActaEntregaRecepcionContratistaC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comprobantes_actas_de_entrega_recepcion_comprador)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setActaEntregaRecepcionComprador(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setActaEntregaRecepcionCompradorC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Documentos_de_transporte)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setDocumentosTransporte(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setDocumentosTransporteC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Documentos_aduanales)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setDocumentosAduanales(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setDocumentosAduanalesC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Documentos_de_soporte_de_reclamos_demora)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setDocumentosSoporteReclamosDemora(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setDocumentosSoporteReclamosDemoraC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Nominaciones_de_servicios_logisticos)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setNominacionesServiciosLogisticos(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setNominacionesServiciosLogisticosC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Otros_Operativo_Estado)) {
+			if (seleccionado == seleccionadoDoc) {
+				bean.setOtros(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setOtrosC(checked);
+			}
+		}
+		
 		return bean;
 	}
 	
@@ -1933,59 +1936,7 @@ public class IntegradorDocx {
 		return bean;
 	}
 
-	public List<ChecklistComCrudoBean> integraChecklistsComCrudo(String asuntoSubexpediente, String expediente,
-			String userLT) throws DfException {
-		List<ChecklistComCrudoBean> listChecklistComCrudoBean = new ArrayList<ChecklistComCrudoBean>();
-		ChecklistComCrudoBean checklistComCrudoBean = null;
-		IDfSession iDfSession = documentumService.getSession(userLT);
-
-		String ordenRelacionada = null;
-		String getDocumentosQuery = null;
-		IDfQuery queryDoc = null;
-		IDfCollection collDocumentos = null;
-		String idDocumento = null;
-		String descripcion = null;
-		int seleccionado;
-		int digital;
-
-		String getOrdenesQuery = "SELECT distinct orden_relacionada FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
-				+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente + "'";
-
-		IDfQuery query = new DfQuery(getOrdenesQuery);
-		try {
-			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-
-			while (collOrdenesRelacionadas.next()) {
-				checklistComCrudoBean = new ChecklistComCrudoBean();
-				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
-				checklistComCrudoBean.setOrdenExpediente(ordenRelacionada);
-				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
-						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
-						+ "' AND orden_relacionada = '" + ordenRelacionada + "'";
-				queryDoc = new DfQuery(getDocumentosQuery);
-
-				collDocumentos = queryDoc.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-
-				while (collDocumentos.next()) {
-					idDocumento = collDocumentos.getString("id_documento");
-					descripcion = collDocumentos.getString("descripcion_documento");
-					seleccionado = collDocumentos.getInt("seleccionado");
-					digital = collDocumentos.getInt("digital");
-					checklistComCrudoBean = registraChecklistComCrudo(checklistComCrudoBean, idDocumento, descripcion,
-							seleccionado, digital);
-				}
-				listChecklistComCrudoBean.add(checklistComCrudoBean);
-			}
-
-		} catch (DfException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			documentumService.releaseSession(iDfSession);
-		}
-		return listChecklistComCrudoBean;
-	}
-	
+		
 	public List<ChecklistOperativoEstadoBean> integraChecklistsOperativoEstado(String asuntoSubexpediente, String expediente,
 			String userLT) throws DfException {
 		List<ChecklistOperativoEstadoBean> listChecklistOperativoEstadoBean = new ArrayList<ChecklistOperativoEstadoBean>();
@@ -2080,10 +2031,10 @@ public class IntegradorDocx {
 		return listChecklistOperativoEstadoBean;
 	}
 	
-	public List<ChecklistComercialEstadoBean> integraChecklistsComercialEstado(String asuntoSubexpediente, String expediente,
+	public List<ChecklistComCrudoBean> integraChecklistsComCrudo(String asuntoSubexpediente, String expediente,
 			String userLT) throws DfException {
-		List<ChecklistComercialEstadoBean> listChecklistComercialEstadoBean = new ArrayList<ChecklistComercialEstadoBean>();
-		ChecklistComercialEstadoBean checklistComercialEstadoBean = null;
+		List<ChecklistComCrudoBean> listChecklistComCrudoBean = new ArrayList<ChecklistComCrudoBean>();
+		ChecklistComCrudoBean checklistComCrudoBean = null;
 		IDfSession iDfSession = documentumService.getSession(userLT);
 
 		String ordenRelacionada = null;
@@ -2103,9 +2054,9 @@ public class IntegradorDocx {
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 
 			while (collOrdenesRelacionadas.next()) {
-				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
+				checklistComCrudoBean = new ChecklistComCrudoBean();
 				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
-				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
+				checklistComCrudoBean.setOrdenExpediente(ordenRelacionada);
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
 						+ "' AND orden_relacionada = '" + ordenRelacionada + "'";
@@ -2118,8 +2069,66 @@ public class IntegradorDocx {
 					descripcion = collDocumentos.getString("descripcion_documento");
 					seleccionado = collDocumentos.getInt("seleccionado");
 					digital = collDocumentos.getInt("digital");
-					checklistComercialEstadoBean = registraChecklistComercialEstado(checklistComercialEstadoBean, idDocumento, descripcion,
+					checklistComCrudoBean = registraChecklistComCrudo(checklistComCrudoBean, idDocumento, descripcion,
 							seleccionado, digital);
+				}
+				listChecklistComCrudoBean.add(checklistComCrudoBean);
+			}
+
+		} catch (DfException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			documentumService.releaseSession(iDfSession);
+		}
+		return listChecklistComCrudoBean;
+	}
+
+	
+	public List<ChecklistComercialEstadoBean> integraChecklistsComercialEstado(String asuntoSubexpediente, String expediente,
+			String userLT) throws DfException {
+		List<ChecklistComercialEstadoBean> listChecklistComercialEstadoBean = new ArrayList<ChecklistComercialEstadoBean>();
+		ChecklistComercialEstadoBean checklistComercialEstadoBean = null;
+		IDfSession iDfSession = documentumService.getSession(userLT);
+
+		String ordenRelacionada = null;
+		String getDocumentosQuery = null;
+		IDfQuery queryDoc = null;
+		IDfCollection collDocumentos = null;
+		String idDocumento = null;
+		String descripcion = null;
+		String object_id = null;
+		String noPag = null;
+		int seleccionado;
+		int digital;
+
+		String getOrdenesQuery = "SELECT distinct orden_relacionada FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
+				+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente + "'";
+
+		IDfQuery query = new DfQuery(getOrdenesQuery);
+		try {
+			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+
+			while (collOrdenesRelacionadas.next()) {
+				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
+				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
+				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
+				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id  FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
+						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
+						+ "' AND orden_relacionada = '" + ordenRelacionada + "'";
+				queryDoc = new DfQuery(getDocumentosQuery);
+
+				collDocumentos = queryDoc.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+
+				while (collDocumentos.next()) {
+					idDocumento = collDocumentos.getString("id_documento");
+					descripcion = collDocumentos.getString("descripcion_documento");
+					seleccionado = collDocumentos.getInt("seleccionado");
+					digital = collDocumentos.getInt("digital");
+					object_id = collDocumentos.getString("object_id");
+					noPag=this.obtenNumeroPaginasDocumento(iDfSession, object_id);
+					checklistComercialEstadoBean = registraChecklistComercialEstado(checklistComercialEstadoBean, idDocumento, descripcion,
+							seleccionado, digital, noPag);
 				}
 				listChecklistComercialEstadoBean.add(checklistComercialEstadoBean);
 			}
@@ -2135,40 +2144,117 @@ public class IntegradorDocx {
 
 		
 	private ChecklistComercialEstadoBean registraChecklistComercialEstado(ChecklistComercialEstadoBean bean, String idDocumento,
-			String descripcion, int seleccionado, int digital) {
-//
-//		if (idDocumento.trim().equals(ChecklistID.Confirmacion_de_compra_venta) && seleccionado == seleccionadoDoc) {
-//			bean.setConfirmacionCompraVenta(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Modificaciones_al_programa_ordenes_nuevas_o_canceladas)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setModificacionesPrograma(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Oficio_PEMEX_disponibilidad) && seleccionado == seleccionadoDoc) {
-//			bean.setOficioPemexDisponibilidad(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Oficios_a_pep) && seleccionado == seleccionadoDoc) {
-//			bean.setOficiosPep(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Contrato_simple) && seleccionado == seleccionadoDoc) {
-//			bean.setContratoSimple(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Recap) && seleccionado == seleccionadoDoc) {
-//			bean.setRecap(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Programa_contractual_previsto) && seleccionado == seleccionadoDoc) {
-//			bean.setProgramaContractualPrevisto(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_al_cliente) && seleccionado == seleccionadoDoc) {
-//			bean.setComunicacionesAlCliente(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_del_cliente) && seleccionado == seleccionadoDoc) {
-//			bean.setComunicacionesDelCliente(checked);
-//		}
-//		if (idDocumento.trim().equals(ChecklistID.Confirmacion_carta_de_credito_garantia_de_pago)
-//				&& seleccionado == seleccionadoDoc) {
-//			bean.setConfirmacionCartaCredito(checked);
-//		}
+			String descripcion, int seleccionado, int digital, String noPag) {
+
+		if (idDocumento.trim().equals(ChecklistID.Distribucion_de_ingresos_comprador)) {
+			bean.setDistribucionIngresosN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setDistribucionIngresos(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setDistribucionIngresosC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Calculo_de_precio_comercializador)) {
+			bean.setCalculoPrecioComercializadorN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setCalculoPrecioComercializador(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setCalculoPrecioComercializadorC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Calculo_de_precio_comprador)) {
+			bean.setCalculoPrecioCompradorN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setCalculoPrecioComprador(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setCalculoPrecioCompradorC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Calculo_de_precio_comprador)) {
+			bean.setCalculoPrecioCompradorN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setCalculoPrecioComprador(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setCalculoPrecioCompradorC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Correo_de_CNH)) {
+			bean.setCorreoCNHN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setCorreoCNH(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setCorreoCNHC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Memorandum_de_solicitud_a_tesoreria)) {
+			bean.setMemorandumSolicitudN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setMemorandumSolicitud(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setMemorandumSolicitudC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_con_CNH)) {
+			bean.setComunicacionesCNHN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setComunicacionesCNH(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setComunicacionesCNHC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_con_comprador)) {
+			bean.setComunicacionesCompradorN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setComunicacionesComprador(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setComunicacionesCompradorC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_con_contratista)) {
+			bean.setComunicacionesContratistaN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setComunicacionesContratista(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setComunicacionesContratistaC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_con_FMP)) {
+			bean.setComunicacionesFMPN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setComunicacionesFMP(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setComunicacionesFMPC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Comunicaciones_con_CRE)) {
+			bean.setComunicacionesCREN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setComunicacionesCRE(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setComunicacionesCREC(checked);
+			}
+		}
+		if (idDocumento.trim().equals(ChecklistID.Otros_Comercial_Estado)) {
+			bean.setOtrosN(noPag);
+			if (seleccionado == seleccionadoDoc) {
+				bean.setOtros(checked);
+			}
+			if (digital == seleccionadoDoc) {
+				bean.setOtrosC(checked);
+			}
+		}
+		
 
 		return bean;
 	}

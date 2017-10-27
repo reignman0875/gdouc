@@ -671,7 +671,6 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();
 			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
 			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
-			//TODO: TO-DO Actualizar ID de plantilla
 			parametrosDocumentoDto.setIdDocumentoPlantilla("0900d4318007d658");
 			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
 			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());
@@ -728,7 +727,6 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();
 			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
 			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
-			//TODO: TO-DO Actualiza id de la plantilla
 			parametrosDocumentoDto.setIdDocumentoPlantilla("0900d4318007d657");
 			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
 			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());

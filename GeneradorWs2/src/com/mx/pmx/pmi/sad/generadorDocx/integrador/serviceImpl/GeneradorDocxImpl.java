@@ -215,6 +215,10 @@ public class GeneradorDocxImpl implements GeneradorWs {
 					else if (asuntoSubexpediente.equals("IndiceCajaCrudo")) {
 						listaDocumentosGenerados = generaIndiceCajaCrudo(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
 					}
+					//Indice carpeta comercializador
+					else if (asuntoSubexpediente.equals("IndiceCarpetaComercializador")) {
+						listaDocumentosGenerados = generaIndiceCarpetaComercializador(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
+					}
 					else {
 						listaDocumentosGenerados = generaChecklistsComun(asuntoSubexpediente, numeroExpediente, generadorBean);
 					}

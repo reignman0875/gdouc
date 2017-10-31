@@ -806,6 +806,7 @@ public class IntegradorDocx {
 		paramBean.setAnio(parametros.get("anio"));
 		paramBean.setSubexpediente(parametros.get("subexpediente"));
 		paramBean.setContraparte(parametros.get("contraparte"));
+		paramBean.setAreaContractual(parametros.get("areaContractual"));
 				return paramBean;
 	}
 	public List<Map<String, String>> integraTablaIndiceCarpetaC(GeneradorBean generadorBean, IndiceCarpetaBean indiceCarpetaBean, IndiceCarpetaTablaBean indiceCarpetaTablaBean)  throws Exception {
@@ -882,6 +883,126 @@ public class IntegradorDocx {
 					if(resultSet3.getString("n_numr_ordn_relcnd")!=null && resultSet3.getString("n_numr_ordn_relcnd").trim().length()>0) {
 					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
 							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_numr_ordn_relcnd") + "' "
+							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
+					System.out.println("Se ejecutara el query:"+sQuery4);
+					IDfQuery dQuery4 = new DfQuery(sQuery4);
+					IDfCollection resultSet4 = dQuery4.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+					while (resultSet4.next()) {
+						wsFirm = wSDocumentumSoap.getFirmaPorLineaDeNegocio(resultSet3.getString("n_numr_ordn_relcnd"), indiceCarpetaBean.getLineaNegocio());
+						indiceCarpetaBean.setAprobadorExpedientes(wsFirm.getFirmaAprobacion()!=null?wsFirm.getFirmaAprobacion():" ");
+						indiceCarpetaBean.setIntegradorExpedientes(wsFirm.getFirmaIntegrador()!=null?wsFirm.getFirmaIntegrador():" ");
+						indiceCarpetaBean.setRecibioRevisoExpediente(wsFirm.getFirmaRevisionFisica()!=null?wsFirm.getFirmaRevisionFisica():" ");
+						indiceCarpetaBean.setRevisorExpedientes(wsFirm.getFirmaRevisor()!=null?wsFirm.getFirmaRevisor():" ");
+						indiceCarpetaBean.setRecepcionExpedientes(wsFirm.getFirmaVistoBueno()!=null?wsFirm.getFirmaVistoBueno():" ");
+						k = 1;
+						repl1 = new HashMap<String, String>();
+						repl1.put("SJ_" + (k++), " ");
+						repl1.put("SJ_" + (k++), resultSet3.getString("n_numr_ordn_relcnd"));
+						repl1.put("SJ_" + (k++), " ");
+						repl1.put("SJ_" + (k++), wsFirm.getFechaTrade().toString());
+						repl1.put("SJ_" + (k++), resultSet4.getString("total_pag"));
+						repl1.put("SJ_" + (k++), resultSet4.getString("num_tomo"));
+						listMap.add(repl1);
+					}
+					}
+				}
+			}
+			}
+			else {
+				repl1 = new HashMap<String, String>();
+				repl1.put("SJ_1", " ");
+				repl1.put("SJ_2", " ");
+				repl1.put("SJ_3", " ");
+				repl1.put("SJ_4", " ");
+				repl1.put("SJ_5", " ");
+				repl1.put("SJ_6", " ");
+				listMap.add(repl1);
+			}
+	} catch (DfException e) {
+		e.printStackTrace();
+		throw e;
+	} finally {
+		documentumService.releaseSession(iDfSession);
+	}
+		indiceCarpetaBean.setTotalHojas(new Integer(pTot).toString());
+		return listMap;
+
+	}
+
+	public List<Map<String, String>> integraTablaIndiceCarpetaE(GeneradorBean generadorBean, IndiceCarpetaBean indiceCarpetaBean, IndiceCarpetaTablaBean indiceCarpetaTablaBean)  throws Exception {
+		//SJ1:Estrategia; SJ2:Orden; SJ3:FechaGen; SJ4:CreacionTrade; SJ5:NoHojas; SJ6:Tomo;
+		String pagTotales, numTomo, numPaginas;
+		pagTotales=numTomo=numPaginas = new String();
+		WSDocumentum wSDocumentum = new WSDocumentum();
+		WSDocumentumSoap wSDocumentumSoap = wSDocumentum.getWSDocumentumSoap();
+		Firmas wsFirm = new Firmas();
+		int pTot=0;
+		Map<String, String> repl1;
+		List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
+		IDfSession iDfSession = documentumService.getSession(generadorBean.getUserName());
+		String sQuery1 = "SELECT DISTINCT(child_id) as child_id FROM dm_relation "
+				+ "WHERE relation_name = 'pmx_carpetas_integrac_1' AND parent_id IN "
+				+ "(SELECT r_object_id FROM pmx_carpetas_integracio WHERE "
+				+ "area_contractual = '" + indiceCarpetaBean.getContraparte() + "' "
+				+ "AND a_os = " + indiceCarpetaBean.getAnio()
+				+ " AND meses = " + indiceCarpetaBean.getMes()
+				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
+		try {
+			System.out.println("Se ejecutara el query:"+sQuery1);
+			IDfQuery dQuery1 = new DfQuery(sQuery1);
+			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_contrprt, r_creation_date "
+					+ " FROM pmx_pmi_comrcld_std WHERE r_object_id IN "
+					+ " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
+			String sQuery2_7 = new String();
+			int i=0, k;			
+			while (resultSet.next()) {
+				if(resultSet.getString("child_id")!=null && resultSet.getString("child_id").trim().length()>0) {
+					if(i>0)
+						sQuery2_7 = sQuery2_7 + ", "; 				
+					sQuery2_7 = sQuery2_7 + "'" + resultSet.getString("child_id") + "' ";
+					i++;
+				}
+			}
+			if(i>0) {
+			sQuery2 +=  sQuery2_7 + "))";
+			System.out.println("Se ejecutara el query:"+sQuery2);
+			IDfQuery dQuery2 = new DfQuery(sQuery2);
+			IDfCollection resultSet2 = dQuery2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			while (resultSet2.next()) {
+				String sQuery5 = "select max (ar_numr_tomo) as num_tomo from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
+				String sQuery6 = "select sum(n_numr_pagns) as total_pag from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
+				String sQuery3 = "SELECT DISTINCT(n_mero_de_orden) as n_numr_ordn_relcnd "
+						+ "FROM  pmx_pmi_comrcld_std WHERE r_object_id = '" + resultSet2.getString("r_object_id") + "'";
+				System.out.println("Se ejecutara el query:"+sQuery5);
+				IDfQuery dQuery5 = new DfQuery(sQuery5);
+				IDfCollection resultSet5 = dQuery5.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+				while (resultSet5.next()) {
+					numTomo = resultSet5.getString("num_tomo");
+				}
+				System.out.println("Se ejecutara el query:"+sQuery6);
+				IDfQuery dQuery6 = new DfQuery(sQuery6);
+				IDfCollection resultSet6 = dQuery6.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+				while (resultSet6.next()) {
+					numPaginas=resultSet6.getString("total_pag");
+					pTot += resultSet6.getInt("total_pag");
+				}
+				k = 1;
+				repl1 = new HashMap<String, String>();
+				repl1.put("SJ_" + (k++), resultSet2.getString("n_contrprt"));
+				repl1.put("SJ_" + (k++), " ");
+				repl1.put("SJ_" + (k++), resultSet2.getString("r_creation_date"));
+				repl1.put("SJ_" + (k++), " ");
+				repl1.put("SJ_" + (k++), numPaginas);
+				repl1.put("SJ_" + (k++), numTomo);
+				listMap.add(repl1);
+				System.out.println("Se ejecutara el query:"+sQuery3);
+				IDfQuery dQuery3 = new DfQuery(sQuery3);
+				IDfCollection resultSet3 = dQuery3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+				while (resultSet3.next()) {
+					if(resultSet3.getString("n_numr_ordn_relcnd")!=null && resultSet3.getString("n_numr_ordn_relcnd").trim().length()>0) {
+					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
+							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_mero_de_orden") + "' "
 							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 					System.out.println("Se ejecutara el query:"+sQuery4);
 					IDfQuery dQuery4 = new DfQuery(sQuery4);

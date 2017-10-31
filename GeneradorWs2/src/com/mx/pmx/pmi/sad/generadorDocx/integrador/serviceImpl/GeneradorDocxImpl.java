@@ -177,6 +177,10 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				else if (asuntoSubexpediente.equals("IndiceCarpetaCrudo")) {
 					listaDocumentosGenerados = generaIndiceCarpetaCrudo(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
 				}
+				//Indice carpeta comercializador
+				else if (asuntoSubexpediente.equals("IndiceCarpetaComercializador")) {
+					listaDocumentosGenerados = generaIndiceCarpetaComercializador(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
+				}
 				//Indice caja crudo
 				else if (asuntoSubexpediente.equals("IndiceCajaCrudo")) {
 					listaDocumentosGenerados = generaIndiceCajaCrudo(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
@@ -931,6 +935,36 @@ paramBean = new IndiceCajaBean();
 			
 			IndiceCarpetaBean paramBean = integradorDocx.integraIndiceCarpetaC(generadorBean, parametros);
 			contenidoTabla = integradorDocx.integraTablaIndiceCarpetaC(generadorBean, paramBean, new IndiceCarpetaTablaBean());
+			idTabla = new String[] { "SJ_1", "SJ_2", "SJ_3", "SJ_4", "SJ_5", "SJ_6" };
+			UsuarioDto usuarioDto = new UsuarioDto();
+			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();
+			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
+			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
+			parametrosDocumentoDto.setIdDocumentoPlantilla("090420a98025e882");
+			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
+			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());
+			parametrosDocumentoDto.setRutaXml(generadorBean.getRutaXML());
+			parametrosDocumentoDto.setXmlDatos(jaxbObjectToXML(paramBean));
+			listaParametros.add(parametrosDocumentoDto);
+			List<DocumentoGeneradoDto> listaDocumentosGenerados = transformarDocumentoService.crearDocumentoDOCX(
+					usuarioDto, (List<ParametrosDocumentoDto>) listaParametros, contenidoTabla, idTabla, true,
+					generadorBean.getUserName(), parametros);
+			return listaDocumentosGenerados;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DfException(e.getMessage());
+		}
+	}
+	public List<DocumentoGeneradoDto> generaIndiceCarpetaComercializador(String asuntoSubexpediente, String numeroExpediente,
+			 GeneradorBean generadorBean, Map<String, String> parametros)
+					throws DfException {
+		try {
+			List<Map<String, String>> contenidoTabla;
+			String[] idTabla;
+			IntegradorDocx integradorDocx = new IntegradorDocx();
+			
+			IndiceCarpetaBean paramBean = integradorDocx.integraIndiceCarpetaC(generadorBean, parametros);
+			contenidoTabla = integradorDocx.integraTablaIndiceCarpetaE(generadorBean, paramBean, new IndiceCarpetaTablaBean());
 			idTabla = new String[] { "SJ_1", "SJ_2", "SJ_3", "SJ_4", "SJ_5", "SJ_6" };
 			UsuarioDto usuarioDto = new UsuarioDto();
 			TransformarDocumentoService transformarDocumentoService = new TransformarDocumentoServiceImpl();

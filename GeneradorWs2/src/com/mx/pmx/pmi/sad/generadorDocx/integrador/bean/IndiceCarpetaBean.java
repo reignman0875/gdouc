@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class IndiceCarpetaBean extends PadreBean {
 
 	public IndiceCarpetaBean() {
-		contraparte=subexpediente=lineaNegocio=mes=anio=totalHojas=integradorExpedientes=revisorExpedientes=aprobadorExpedientes=recibioRevisoExpediente=recepcionExpedientes=new String();
+		contraparte=subexpediente=lineaNegocio=mes=anio=totalHojas=integradorExpedientes=revisorExpedientes=aprobadorExpedientes=recibioRevisoExpediente=recepcionExpedientes=areaContractual=new String();
 	}
 	private String contraparte;
 	private String lineaNegocio;
@@ -22,7 +22,14 @@ public class IndiceCarpetaBean extends PadreBean {
 	private String recibioRevisoExpediente;
 	private String recepcionExpedientes;
 	private String subexpediente;
+	private String areaContractual;
 	
+	public String getAreaContractual() {
+		return areaContractual;
+	}
+	public void setAreaContractual(String areaContractual) {
+		this.areaContractual = areaContractual;
+	}
 	public String getContraparte() {
 		return contraparte;
 	}

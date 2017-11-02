@@ -677,7 +677,10 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			// }
 			// else {
 			/*BORRAR*/
-//			paramBean.set
+			paramBean.setOrdenPmi("hola");
+			paramBean.setOrdenesRelacionadas("hola");
+			paramBean.setAllocation("hola");
+			paramBean.setAreaContractual("hola");
 			/*BORRAR*/
 			List<Map<String, String>> contenidoTabla;
 			String[] idTabla;

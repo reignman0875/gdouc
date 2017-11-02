@@ -2088,6 +2088,7 @@ public class IntegradorDocx {
 		IDfQuery query = new DfQuery(getOrdenesQuery);
 		try {
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			collOrdenesRelacionadas.next();
 			checklistOperativoEstadoBean = new ChecklistOperativoEstadoBean();
 			checklistOperativoEstadoBean.setAreaContractual(collOrdenesRelacionadas.getString("area_contractual"));
 			checklistOperativoEstadoBean.setOrdenPmi("");
@@ -2218,7 +2219,7 @@ public class IntegradorDocx {
 		try {
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			IDfCollection collArCnRelacionadas = query0.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			
+			collArCnRelacionadas.next();
 			while (collOrdenesRelacionadas.next()) {
 				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
 				checklistComercialEstadoBean.setAreaContractual(collArCnRelacionadas.getString("area_contractual"));

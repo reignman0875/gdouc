@@ -2227,6 +2227,7 @@ public class IntegradorDocx {
 				
 				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
 				log.info("Orden relacionada para generar checklist:"+ordenRelacionada);
+				checklistComercialEstadoBean.setOrdenRelacionada(ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id  FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente

@@ -14,11 +14,11 @@
 			<arg2>
 				<entry>
 					<key>numeroExpediente</key>
-					<value>PMI-15E-050-000-000542-2017</value>
+					<value>PMI-15E-050-000-000564-2017</value>
 				</entry>
 				<entry>
 					<key>asuntoSubexpediente</key>
-					<value>Comercial</value>
+					<value>Operativo</value>
 				</entry>
 			</arg2>
 		</ns0:generaChecklistComercial>

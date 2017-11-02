@@ -16,6 +16,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.tempuri.ArrayOfDatosPeoplesoft;
 import org.tempuri.DatosPeoplesoft;
 import org.tempuri.Firmas;
@@ -60,6 +62,9 @@ import client.Test1;
 
 @WebService(targetNamespace = "http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/", endpointInterface = "com.mx.pmx.pmi.sad.generadorDocx.integrador.serviceImpl.GeneradorWs", portName = "GeneradorDocxImplPort", serviceName = "GeneradorDocxImplService")
 public class GeneradorDocxImpl implements GeneradorWs {
+	
+	private static final Log log = LogFactory.getLog(GeneradorDocxImpl.class);
+	
 	public List<DocumentoGeneradoDto> generaCaratula(CaratulaBean paramBean, GeneradorBean generadorBean,
 			Map<String, String> parametros) throws DfException {
 		try {
@@ -129,7 +134,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 
 	public List<DocumentoGeneradoDto> generaChecklistComercial(ChecklistComercialBean paramBean,
 			GeneradorBean generadorBean, Map<String, String> parametros) throws DfException {
-		
+		log.info("Implementado log en el generador !!!");
 		try {
 			if (parametros != null && parametros.size() == 2) {
 				System.out.println("case 1");

@@ -677,10 +677,10 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			// }
 			// else {
 			/*BORRAR*/
-			paramBean.setOrdenPmi("hola");
-			paramBean.setOrdenesRelacionadas("hola");
-			paramBean.setAllocation("hola");
-			paramBean.setAreaContractual("hola");
+//			paramBean.setOrdenPmi("hola");
+//			paramBean.setOrdenesRelacionadas("hola");
+//			paramBean.setAllocation("hola");
+//			paramBean.setAreaContractual("hola");
 			/*BORRAR*/
 			List<Map<String, String>> contenidoTabla;
 			String[] idTabla;
@@ -739,11 +739,11 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			// }
 			// else {
 			/*BORRAR*/
-			paramBean.setOrdenExpediente("hola");
-			paramBean.setMesEntrega("hola");
-			paramBean.setOrdenRelacionada("hola");
-			paramBean.setAreaContractual("hola");
-			paramBean.setProducto("hola");
+//			paramBean.setOrdenExpediente("hola");
+//			paramBean.setMesEntrega("hola");
+//			paramBean.setOrdenRelacionada("hola");
+//			paramBean.setAreaContractual("hola");
+//			paramBean.setProducto("hola");
 			/*BORRAR*/
 			List<Map<String, String>> contenidoTabla;
 			String[] idTabla;

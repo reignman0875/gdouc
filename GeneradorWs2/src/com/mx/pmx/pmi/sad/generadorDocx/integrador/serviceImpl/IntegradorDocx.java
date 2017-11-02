@@ -2079,50 +2079,26 @@ public class IntegradorDocx {
 		int seleccionado;
 		int digital;
 
-		String getOrdenesQuery = "SELECT distinct orden_relacionada "
-				+ "FROM dm_dbo.DOCUMENTO_SELECCIONADO "
-				+ "WHERE numero_expediente = '"
+		String getOrdenesQuery = "select area_contractual from pmx_pmi_comrcld_std   where  ar_numr_expdnt= '"
 				+ expediente
-				+ "' AND descripcion_expediente = '"
+				+ "' AND subject = '"
 				+ asuntoSubexpediente
-				+ "' AND (orden_relacionada IN ( "
-				+ "SELECT n_numr_ordn_relcnd FROM pmx_pmi_ec_prodcts "
-				+ "WHERE subject = '"
-				+ asuntoSubexpediente
-				+ "' AND ar_numr_expdnt = '"
-				+ expediente
-				+ "') OR	orden_relacionada IN ( "
-				+ "SELECT n_numr_ordn_relcnd "
-				+ "FROM pmx_pmi_ecexpcomrop WHERE subject = '"
-				+ asuntoSubexpediente
-				+ "' AND ar_numr_expdnt = '"
-				+ expediente
-				+ "') OR 	orden_relacionada IN ( "
-				+ "SELECT n_numr_ordn_relcnd "
-				+ "FROM pmx_pmi_ec_fletmnts WHERE subject = '"
-				+ asuntoSubexpediente
-				+ "' AND ar_numr_expdnt = '"
-				+ expediente
-				+ "') OR 	orden_relacionada IN ( "
-				+ "SELECT n_numr_ordn_relcnd "
-				+ "FROM pmx_pmi_ec_tesrr "
-				+ "WHERE subject = '"
-				+ asuntoSubexpediente
-				+ "' AND ar_numr_expdnt = '"
-				+ expediente
-				+ "'))";
+				+ "')";
 
 		IDfQuery query = new DfQuery(getOrdenesQuery);
 		try {
-//			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			
+			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			checklistOperativoEstadoBean = new ChecklistOperativoEstadoBean();
+			checklistOperativoEstadoBean.setAreaContractual(collOrdenesRelacionadas.getString("area_contractual"));
+			checklistOperativoEstadoBean.setOrdenPmi("");
+			checklistOperativoEstadoBean.setOrdenesRelacionadas("");
+			checklistOperativoEstadoBean.setAllocation("");
 			   
 //			while (collOrdenesRelacionadas.next()) {
 				conteoHojas=1;
-				checklistOperativoEstadoBean = new ChecklistOperativoEstadoBean();
 				checklistOperativoEstadoBean.setFecha(dateFormat.format(cal.getTime()));
 //				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
-				checklistOperativoEstadoBean.setOrdenPmi(ordenRelacionada);
+//				checklistOperativoEstadoBean.setOrdenPmi(ordenRelacionada);
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
 						+ "' ";
@@ -2226,16 +2202,30 @@ public class IntegradorDocx {
 		int seleccionado;
 		int digital;
 
+		String getAreaContrQuery = "select area_contractual from pmx_pmi_comrcld_std   where  ar_numr_expdnt= '"
+				+ expediente
+				+ "' AND subject = '"
+				+ asuntoSubexpediente
+				+ "')";
+
+
+		
 		String getOrdenesQuery = "SELECT distinct orden_relacionada FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 				+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente + "'";
 
 		IDfQuery query = new DfQuery(getOrdenesQuery);
+		IDfQuery query0 = new DfQuery(getAreaContrQuery);
 		try {
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-
+			IDfCollection collArCnRelacionadas = query0.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			
 			while (collOrdenesRelacionadas.next()) {
 				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
+				checklistComercialEstadoBean.setAreaContractual(collArCnRelacionadas.getString("area_contractual"));
+				
+				
 				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
+				log.info("Orden relacionada para generar checklist:"+ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id  FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente

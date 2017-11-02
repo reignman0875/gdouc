@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.docx4j.model.datastorage.XPathEnhancerParser.main_return;
 import org.tempuri.DatosPeoplesoft;
 import org.tempuri.Firmas;
@@ -71,7 +73,8 @@ and wi.r_workflow_id=(select workflow_id  from dmc_wfsd_element_string where str
 and pr.r_act_name like 'Aprobar%'
  * */
 public class IntegradorDocx {
-	
+
+	private static final Log log = LogFactory.getLog(IntegradorDocx.class);
 
 	private String checked = "X";
 	private DocumentumService documentumService;
@@ -84,28 +87,28 @@ public class IntegradorDocx {
 	}
 	
 //	public static void main(String[] args) throws Exception {
-//		System.out.println("###### CRUDO ######");
-//		System.out.println(identificarNumeroExpediente("PMI-15E-056-000-000001-2017", "Operativo Marítimo"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-056-000-000002-2017", "Tesorería"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-056-000-000003-2017", "Comercial de Crudo"));
+//		log.info("###### CRUDO ######");
+//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000001-2017", "Operativo Marítimo"));
+//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000002-2017", "Tesorería"));
+//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000003-2017", "Comercial de Crudo"));
 //		
-//		System.out.println("\n###### PRODUCTO ######");
-//		System.out.println(identificarNumeroExpediente("PMI-15E-071-000-000004-2017", "Comercial de Producto"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-071-000-000005-2017", "Operativo Marítimo"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-071-000-000006-2017", "Operativo Terrestre"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-071-000-000007-2017", "Fletamentos"));
-//		System.out.println(identificarNumeroExpediente("PMI-15E-071-000-000008-2017", "Tesorería"));
+//		log.info("\n###### PRODUCTO ######");
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000004-2017", "Comercial de Producto"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000005-2017", "Operativo Marítimo"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000006-2017", "Operativo Terrestre"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000007-2017", "Fletamentos"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000008-2017", "Tesorería"));
 //		
-//		System.out.println("\n###### RECLAMOS ######");
-//		System.out.println(identificarNumeroExpediente("PMI-14E-058-001-000009-2017", null));
-//		System.out.println(identificarNumeroExpediente("PMI-14E-058-002-000010-2017", ""));
+//		log.info("\n###### RECLAMOS ######");
+//		log.info(identificarNumeroExpediente("PMI-14E-058-001-000009-2017", null));
+//		log.info(identificarNumeroExpediente("PMI-14E-058-002-000010-2017", ""));
 //		
-//		System.out.println("\n###### OTROS ######");
-//		System.out.println(identificarNumeroExpediente("PMI-10C-003-002-000011-2017", null));
+//		log.info("\n###### OTROS ######");
+//		log.info(identificarNumeroExpediente("PMI-10C-003-002-000011-2017", null));
 //	}
 
 	private CaratulaBean identificarNumeroExpediente(IDfSession iDfSession, CaratulaBean paramBean, String expAsunto) throws DfException {
-		System.out.println("Identificando el numero de expediente:"+paramBean.getPeriodoAdicionalNoExpediente()+"; asunto:"+expAsunto);
+		log.info("Identificando el numero de expediente:"+paramBean.getPeriodoAdicionalNoExpediente()+"; asunto:"+expAsunto);
 		String expNumero = paramBean.getPeriodoAdicionalNoExpediente();
 		String queryTxt = "SELECT wi.r_performer_name, pr.r_act_name FROM dmi_workitem_s wi, dm_workflow_s wf, dm_process_r pr "
 				+ "where "
@@ -203,26 +206,26 @@ public class IntegradorDocx {
 			revision="Revisar documentos%'";
 			aprobacion="Aprobar %'";
 		}
-		System.out.println("Query para obtener int:"+queryTxt+integracion);
+		log.info("Query para obtener int:"+queryTxt+integracion);
 		IDfQuery query = new DfQuery(queryTxt+integracion);
 		IDfCollection resultSet = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 		while (resultSet.next()) {
 			paramBean.setClasificacionArchivisticaNombreResponsableIntegracion(resultSet.getString("r_performer_name"));
-			System.out.println("Integrador:"+resultSet.getString("r_performer_name"));
+			log.info("Integrador:"+resultSet.getString("r_performer_name"));
 		}
-		System.out.println("Query para obtener rev:"+queryTxt+revision);
+		log.info("Query para obtener rev:"+queryTxt+revision);
 		IDfQuery query2 = new DfQuery(queryTxt+revision);
 		IDfCollection resultSet2 = query2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 		while (resultSet2.next()) {
 			paramBean.setClasificacionArchivisticaNombreResponsableRevision(resultSet2.getString("r_performer_name"));
-			System.out.println("Revisor:"+resultSet2.getString("r_performer_name"));
+			log.info("Revisor:"+resultSet2.getString("r_performer_name"));
 		}
-		System.out.println("Query para obtener apr:"+queryTxt+aprobacion);
+		log.info("Query para obtener apr:"+queryTxt+aprobacion);
 		IDfQuery query3 = new DfQuery(queryTxt+aprobacion);
 		IDfCollection resultSet3 = query3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 		while (resultSet3.next()) {
 			paramBean.setReservaNombreTitularUnidad(resultSet3.getString("r_performer_name"));
-			System.out.println("Aprobador:"+resultSet3.getString("r_performer_name"));
+			log.info("Aprobador:"+resultSet3.getString("r_performer_name"));
 		}
 
 		return paramBean;
@@ -317,7 +320,7 @@ public class IntegradorDocx {
 			IDfCollection resultSet = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			while (resultSet.next()) {
 				loginName = resultSet.getString("user_login_name");
-				System.out.println("LoginName:"+loginName);
+				log.info("LoginName:"+loginName);
 			}
 		}
 		return loginName.toUpperCase();		
@@ -380,10 +383,10 @@ public class IntegradorDocx {
 	}
 	
 //	public static void main(String[] args) throws Exception{
-//		System.out.println("Holas");
+//		log.info("Holas");
 //		IntegraPeopleSoftDB integraPeopleSoftDB = new IntegraPeopleSoftDB(); 
 //		integraPeopleSoftDB.ejecutaQuery("FROMERO");
-//		System.out.println("sali");
+//		log.info("sali");
 //	}
 	public CaratulaBean integraDatosCaratula (CaratulaBean parambean, Map<String,String> parametros, String userLT, String asuntoSubexpediente) throws Exception{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -700,7 +703,7 @@ public class IntegradorDocx {
 				+ " AND meses = " + indiceCarpetaBean.getMes()
 				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
 		try {
-			System.out.println("Se ejecutara el query:"+sQuery1);
+			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_estrtg_comrcl, r_creation_date "
@@ -718,7 +721,7 @@ public class IntegradorDocx {
 			}
 			if(i>0) {
 			sQuery2 +=  sQuery2_7 + "))";
-			System.out.println("Se ejecutara el query:"+sQuery2);
+			log.info("Se ejecutara el query:"+sQuery2);
 			IDfQuery dQuery2 = new DfQuery(sQuery2);
 			IDfCollection resultSet2 = dQuery2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			while (resultSet2.next()) {
@@ -726,13 +729,13 @@ public class IntegradorDocx {
 				String sQuery6 = "select sum(n_numr_pagns) as total_pag from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 				String sQuery3 = "SELECT DISTINCT(n_numr_ordn_relcnd) as n_numr_ordn_relcnd "
 						+ "FROM  pmx_pmi_ecexpcomrop WHERE r_object_id = '" + resultSet2.getString("r_object_id") + "'";
-				System.out.println("Se ejecutara el query:"+sQuery5);
+				log.info("Se ejecutara el query:"+sQuery5);
 				IDfQuery dQuery5 = new DfQuery(sQuery5);
 				IDfCollection resultSet5 = dQuery5.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet5.next()) {
 					numTomo = resultSet5.getString("num_tomo");
 				}
-				System.out.println("Se ejecutara el query:"+sQuery6);
+				log.info("Se ejecutara el query:"+sQuery6);
 				IDfQuery dQuery6 = new DfQuery(sQuery6);
 				IDfCollection resultSet6 = dQuery6.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet6.next()) {
@@ -748,7 +751,7 @@ public class IntegradorDocx {
 				repl1.put("SJ_" + (k++), numPaginas);
 				repl1.put("SJ_" + (k++), numTomo);
 				listMap.add(repl1);
-				System.out.println("Se ejecutara el query:"+sQuery3);
+				log.info("Se ejecutara el query:"+sQuery3);
 				IDfQuery dQuery3 = new DfQuery(sQuery3);
 				IDfCollection resultSet3 = dQuery3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet3.next()) {
@@ -756,7 +759,7 @@ public class IntegradorDocx {
 					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
 							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_numr_ordn_relcnd") + "' "
 							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
-					System.out.println("Se ejecutara el query:"+sQuery4);
+					log.info("Se ejecutara el query:"+sQuery4);
 					IDfQuery dQuery4 = new DfQuery(sQuery4);
 					IDfCollection resultSet4 = dQuery4.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 					while (resultSet4.next()) {
@@ -828,7 +831,7 @@ public class IntegradorDocx {
 				+ " AND meses = " + indiceCarpetaBean.getMes()
 				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
 		try {
-			System.out.println("Se ejecutara el query:"+sQuery1);
+			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_contrprt, r_creation_date "
@@ -846,7 +849,7 @@ public class IntegradorDocx {
 			}
 			if(i>0) {
 			sQuery2 +=  sQuery2_7 + "))";
-			System.out.println("Se ejecutara el query:"+sQuery2);
+			log.info("Se ejecutara el query:"+sQuery2);
 			IDfQuery dQuery2 = new DfQuery(sQuery2);
 			IDfCollection resultSet2 = dQuery2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			while (resultSet2.next()) {
@@ -854,13 +857,13 @@ public class IntegradorDocx {
 				String sQuery6 = "select sum(n_numr_pagns) as total_pag from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 				String sQuery3 = "SELECT DISTINCT(n_numr_ordn_relcnd) as n_numr_ordn_relcnd "
 						+ "FROM  pmx_pmi_contrexpcrud WHERE r_object_id = '" + resultSet2.getString("r_object_id") + "'";
-				System.out.println("Se ejecutara el query:"+sQuery5);
+				log.info("Se ejecutara el query:"+sQuery5);
 				IDfQuery dQuery5 = new DfQuery(sQuery5);
 				IDfCollection resultSet5 = dQuery5.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet5.next()) {
 					numTomo = resultSet5.getString("num_tomo");
 				}
-				System.out.println("Se ejecutara el query:"+sQuery6);
+				log.info("Se ejecutara el query:"+sQuery6);
 				IDfQuery dQuery6 = new DfQuery(sQuery6);
 				IDfCollection resultSet6 = dQuery6.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet6.next()) {
@@ -876,7 +879,7 @@ public class IntegradorDocx {
 				repl1.put("SJ_" + (k++), numPaginas);
 				repl1.put("SJ_" + (k++), numTomo);
 				listMap.add(repl1);
-				System.out.println("Se ejecutara el query:"+sQuery3);
+				log.info("Se ejecutara el query:"+sQuery3);
 				IDfQuery dQuery3 = new DfQuery(sQuery3);
 				IDfCollection resultSet3 = dQuery3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet3.next()) {
@@ -884,7 +887,7 @@ public class IntegradorDocx {
 					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
 							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_numr_ordn_relcnd") + "' "
 							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
-					System.out.println("Se ejecutara el query:"+sQuery4);
+					log.info("Se ejecutara el query:"+sQuery4);
 					IDfQuery dQuery4 = new DfQuery(sQuery4);
 					IDfCollection resultSet4 = dQuery4.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 					while (resultSet4.next()) {
@@ -948,7 +951,7 @@ public class IntegradorDocx {
 				+ " AND meses = " + indiceCarpetaBean.getMes()
 				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
 		try {
-			System.out.println("Se ejecutara el query:"+sQuery1);
+			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_contrprt, r_creation_date "
@@ -966,7 +969,7 @@ public class IntegradorDocx {
 			}
 			if(i>0) {
 			sQuery2 +=  sQuery2_7 + "))";
-			System.out.println("Se ejecutara el query:"+sQuery2);
+			log.info("Se ejecutara el query:"+sQuery2);
 			IDfQuery dQuery2 = new DfQuery(sQuery2);
 			IDfCollection resultSet2 = dQuery2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			while (resultSet2.next()) {
@@ -974,13 +977,13 @@ public class IntegradorDocx {
 				String sQuery6 = "select sum(n_numr_pagns) as total_pag from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 				String sQuery3 = "SELECT DISTINCT(n_mero_de_orden) as n_numr_ordn_relcnd "
 						+ "FROM  pmx_pmi_comrcld_std WHERE r_object_id = '" + resultSet2.getString("r_object_id") + "'";
-				System.out.println("Se ejecutara el query:"+sQuery5);
+				log.info("Se ejecutara el query:"+sQuery5);
 				IDfQuery dQuery5 = new DfQuery(sQuery5);
 				IDfCollection resultSet5 = dQuery5.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet5.next()) {
 					numTomo = resultSet5.getString("num_tomo");
 				}
-				System.out.println("Se ejecutara el query:"+sQuery6);
+				log.info("Se ejecutara el query:"+sQuery6);
 				IDfQuery dQuery6 = new DfQuery(sQuery6);
 				IDfCollection resultSet6 = dQuery6.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet6.next()) {
@@ -996,7 +999,7 @@ public class IntegradorDocx {
 				repl1.put("SJ_" + (k++), numPaginas);
 				repl1.put("SJ_" + (k++), numTomo);
 				listMap.add(repl1);
-				System.out.println("Se ejecutara el query:"+sQuery3);
+				log.info("Se ejecutara el query:"+sQuery3);
 				IDfQuery dQuery3 = new DfQuery(sQuery3);
 				IDfCollection resultSet3 = dQuery3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 				while (resultSet3.next()) {
@@ -1004,7 +1007,7 @@ public class IntegradorDocx {
 					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
 							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_mero_de_orden") + "' "
 							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
-					System.out.println("Se ejecutara el query:"+sQuery4);
+					log.info("Se ejecutara el query:"+sQuery4);
 					IDfQuery dQuery4 = new DfQuery(sQuery4);
 					IDfCollection resultSet4 = dQuery4.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 					while (resultSet4.next()) {

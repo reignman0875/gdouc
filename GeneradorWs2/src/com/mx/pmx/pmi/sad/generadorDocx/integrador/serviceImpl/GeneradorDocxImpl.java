@@ -137,7 +137,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 		log.info("Implementado log en el generador !!!");
 		try {
 			if (parametros != null && parametros.size() == 2) {
-				System.out.println("case 1");
+				log.info("case 1");
 				List<DocumentoGeneradoDto> listaDocumentosGenerados = null; 
 				String asuntoSubexpediente = parametros.get("asuntoSubexpediente").trim();
 				String numeroExpediente = parametros.get("numeroExpediente").trim();
@@ -169,14 +169,14 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				}
 				//Indice carpeta producto
 				else if (asuntoSubexpediente.equals("IndiceCarpetaProducto")) {
-					System.out.println("aqui");
+					log.info("aqui");
 					listaDocumentosGenerados = generaIndiceCarpetaProducto(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
-					System.out.println("&&&&&&&&&&&&&&&&ya casi al final:"+listaDocumentosGenerados.toString());
+					log.info("&&&&&&&&&&&&&&&&ya casi al final:"+listaDocumentosGenerados.toString());
 				}
 				//Indice caja producto
 				else if (asuntoSubexpediente.equals("IndiceCajaProducto")) {
 					listaDocumentosGenerados = generaIndiceCajaProducto(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
-					System.out.println("&&&&&&&&&&&&&&&&ya casi al final:"+listaDocumentosGenerados.toString());
+					log.info("&&&&&&&&&&&&&&&&ya casi al final:"+listaDocumentosGenerados.toString());
 				}
 				//Indice carpeta crudo
 				else if (asuntoSubexpediente.equals("IndiceCarpetaCrudo")) {
@@ -200,7 +200,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				return listaDocumentosGenerados;
 			} else {
 				if (parametros != null && parametros.size() == 7) {
-					System.out.println("case 2");
+					log.info("case 2");
 					List<DocumentoGeneradoDto> listaDocumentosGenerados = null;
 					String asuntoSubexpediente = parametros.get("asuntoSubexpediente").trim();
 					String numeroExpediente = parametros.get("numeroExpediente").trim();
@@ -230,7 +230,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 					return listaDocumentosGenerados;
 				}
 				else {
-					System.out.println("case 3");
+					log.info("case 3");
 				List<Map<String, String>> contenidoTabla;
 				String[] idTabla;
 				contenidoTabla = null;
@@ -676,6 +676,9 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			// return null;
 			// }
 			// else {
+			/*BORRAR*/
+//			paramBean.set
+			/*BORRAR*/
 			List<Map<String, String>> contenidoTabla;
 			String[] idTabla;
 			contenidoTabla = null;
@@ -732,6 +735,13 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			// return null;
 			// }
 			// else {
+			/*BORRAR*/
+			paramBean.setOrdenExpediente("hola");
+			paramBean.setMesEntrega("hola");
+			paramBean.setOrdenRelacionada("hola");
+			paramBean.setAreaContractual("hola");
+			paramBean.setProducto("hola");
+			/*BORRAR*/
 			List<Map<String, String>> contenidoTabla;
 			String[] idTabla;
 			contenidoTabla = null;
@@ -1048,7 +1058,7 @@ paramBean = new IndiceCajaBean();
 			List<DocumentoGeneradoDto> listaDocumentosGenerados = transformarDocumentoService.crearDocumentoDOCX(
 					usuarioDto, (List<ParametrosDocumentoDto>) listaParametros, contenidoTabla, idTabla, true,
 					generadorBean.getUserName(), parametros);
-			System.out.println("Lista indice carpeta:"+listaDocumentosGenerados.toString());
+			log.info("Lista indice carpeta:"+listaDocumentosGenerados.toString());
 			return listaDocumentosGenerados;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1061,7 +1071,7 @@ paramBean = new IndiceCajaBean();
 	// }
 	public String prueba(ValePrestamoBean paramBean, List<ValePrestamoTablaBean> tablaBean, GeneradorBean generadorBean,
 			Map<String, String> parametros, String p) throws DfException {
-		System.out.println("Metodo de prueba");
+		log.info("Metodo de prueba");
 		// String l=null;
 		try {
 //			this.clientePeopleSoft("FROMERO");
@@ -1086,7 +1096,7 @@ paramBean = new IndiceCajaBean();
 		DatosPeoplesoft datosPeoplesoft = null;
 
 		
-			System.out.println(arrayOfDatosPeoplesoft.getFirmaAprobacion() + " " + arrayOfDatosPeoplesoft.getFirmaIntegrador() + " " + 
+			log.info(arrayOfDatosPeoplesoft.getFirmaAprobacion() + " " + arrayOfDatosPeoplesoft.getFirmaIntegrador() + " " + 
 					arrayOfDatosPeoplesoft.getFirmaRevisionFisica() + " " + arrayOfDatosPeoplesoft.getFirmaRevisor() + " " + 
 					arrayOfDatosPeoplesoft.getFirmaVistoBueno() + " " + arrayOfDatosPeoplesoft.getFechaTrade() );
 		
@@ -1107,13 +1117,13 @@ paramBean = new IndiceCajaBean();
 
 		for (int i = 0; arrayOfDatosPeoplesoft.getDatosPeoplesoft().size() > i; i++) {
 			datosPeoplesoft = arrayOfDatosPeoplesoft.getDatosPeoplesoft().get(i);
-			System.out.println(datosPeoplesoft.getNombre() + " " + datosPeoplesoft.getApellido() + " "
+			log.info(datosPeoplesoft.getNombre() + " " + datosPeoplesoft.getApellido() + " "
 					+ datosPeoplesoft.getCurp());
 		}
 
 		// WSTest1Service service = new WSTest1Service();
 		// CxfTest1SEI cxfTest1SEI = service.getWSTest1Port();
-		// System.out.println(cxfTest1SEI.whatIsTheAnswer("Yeah!"));
+		// log.info(cxfTest1SEI.whatIsTheAnswer("Yeah!"));
 
 	}
 
@@ -1192,7 +1202,7 @@ paramBean = new IndiceCajaBean();
 			// m.marshal(emp, System.out);
 			m.marshal(emp, baos);
 			xml = new String(baos.toByteArray(), StandardCharsets.UTF_8);
-			System.out.println("¿?:" + xml);
+			log.info("¿?:" + xml);
 
 			// Write to File
 			// m.marshal(emp, new File("prueba.xml"));
@@ -1204,11 +1214,11 @@ paramBean = new IndiceCajaBean();
 
 	public static void main1(String[] args) throws Exception {
 		String n = "sgap.2015";
-		System.out.println(n);
+		log.info(n);
 		n = RegistryPasswordUtils.encrypt(n);
-		System.out.println(n);
+		log.info(n);
 		n = RegistryPasswordUtils.decrypt(n);
-		System.out.println(n);
+		log.info(n);
 
 	}
 	

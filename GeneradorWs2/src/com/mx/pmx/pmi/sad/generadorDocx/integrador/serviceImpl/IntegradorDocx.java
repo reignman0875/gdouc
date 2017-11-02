@@ -2083,7 +2083,7 @@ public class IntegradorDocx {
 				+ expediente
 				+ "' AND subject = '"
 				+ asuntoSubexpediente
-				+ "')";
+				+ "'";
 
 		IDfQuery query = new DfQuery(getOrdenesQuery);
 		try {
@@ -2206,7 +2206,7 @@ public class IntegradorDocx {
 				+ expediente
 				+ "' AND subject = '"
 				+ asuntoSubexpediente
-				+ "')";
+				+ "'";
 
 
 		

@@ -954,7 +954,7 @@ public class IntegradorDocx {
 			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_contrprt, r_creation_date "
+			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, area_contractual, r_creation_date "
 					+ " FROM pmx_pmi_comrcld_std WHERE r_object_id IN "
 					+ " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
 			String sQuery2_7 = new String();
@@ -977,6 +977,9 @@ public class IntegradorDocx {
 				String sQuery6 = "select sum(n_numr_pagns) as total_pag from pmx_pce_documento where any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 				String sQuery3 = "SELECT DISTINCT(n_mero_de_orden) as n_numr_ordn_relcnd "
 						+ "FROM  pmx_pmi_comrcld_std WHERE r_object_id = '" + resultSet2.getString("r_object_id") + "'";
+				
+//				SELECT DISTINCT(n_mero_de_orden) as n_numr_ordn_relcnd FROM  pmx_pmi_comrcld_std WHERE r_object_id =
+				
 				log.info("Se ejecutara el query:"+sQuery5);
 				IDfQuery dQuery5 = new DfQuery(sQuery5);
 				IDfCollection resultSet5 = dQuery5.execute(iDfSession, IDfQuery.DF_READ_QUERY);
@@ -992,7 +995,7 @@ public class IntegradorDocx {
 				}
 				k = 1;
 				repl1 = new HashMap<String, String>();
-				repl1.put("SJ_" + (k++), resultSet2.getString("n_contrprt"));
+				repl1.put("SJ_" + (k++), resultSet2.getString("area_contractual"));
 				repl1.put("SJ_" + (k++), " ");
 				repl1.put("SJ_" + (k++), resultSet2.getString("r_creation_date"));
 				repl1.put("SJ_" + (k++), " ");
@@ -1005,7 +1008,7 @@ public class IntegradorDocx {
 				while (resultSet3.next()) {
 					if(resultSet3.getString("n_numr_ordn_relcnd")!=null && resultSet3.getString("n_numr_ordn_relcnd").trim().length()>0) {
 					String sQuery4 = "select max (ar_numr_tomo) as num_tomo, sum(n_numr_pagns) as total_pag from pmx_pce_documento "
-							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_mero_de_orden") + "' "
+							+ " where any n_ordns_relcnds = '"+ resultSet3.getString("n_numr_ordn_relcnd") + "' "
 							+ " and any i_folder_id = '" + resultSet2.getString("r_object_id") + "'";
 					log.info("Se ejecutara el query:"+sQuery4);
 					IDfQuery dQuery4 = new DfQuery(sQuery4);

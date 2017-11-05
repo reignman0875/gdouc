@@ -133,6 +133,15 @@ public class IntegradorDocx {
 				+ expNumero
 				+ "') ) and pr.r_act_name like '";
 		
+		String queryTxt3 = "SELECT supervisor_name as r_performer_name from dmi_queue_item "
+				+ "WHERE  task_state = 'finished' AND "
+				+ "router_id IN ("
+				+ "SELECT r_object_id FROM dm_workflow "
+				+ "WHERE object_name LIKE '"
+				+ expNumero
+				+ "%') AND "
+				+ "task_name like '";
+		
 				String integracion="Integración de Documentos%'",revision="Revisar documentos%'",aprobacion="Aprobar %'";
 				
 				
@@ -141,7 +150,7 @@ public class IntegradorDocx {
 			return paramBean;
 		}
 
-		if ((expNumero.toUpperCase()).contains("PMI-15E-056") || (expNumero.toUpperCase()).contains("PMI-15E-071")) {
+		if ((expNumero.toUpperCase()).contains("PMI-15E-056") || (expNumero.toUpperCase()).contains("PMI-15E-071") || (expNumero.toUpperCase()).contains("PMI-15E-050")) {
 			if (StringUtil.isEmptyOrNull(expAsunto)) {	
 //				throw new DfException("Se debe proporcionar un asunto de subexpediente v\u00e1lido");
 				return paramBean;
@@ -176,21 +185,47 @@ public class IntegradorDocx {
 				}
 				
 			} else {
-				if(expAsunto.equals("Comercial de Crudo")) {
-					integracion="Integración de Documentos%'";
-					revision="Revisar documentos%'";
-					aprobacion="Aprobar %'";
-					queryTxt = queryTxt2;
-				} else if (expAsunto.equals("Operativo Mar\u00edtimo")) {
-					integracion="Integración de Documentos%'";
-					revision="Revisar documentos%'";
-					aprobacion="Aprobar %'";
-					queryTxt = queryTxt2;
-				} else if (expAsunto.equals("Tesorer\u00eda")) {
-					integracion="Integración de Documentos%'";
-					revision="Revisar documentos%'";
-					aprobacion="Aprobar %'";
-					queryTxt = queryTxt2;
+				if (expNumero.contains("PMI-15E-056")) {
+					
+					if(expAsunto.equals("Comercial de Crudo")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt2;
+					} else if (expAsunto.equals("Operativo Mar\u00edtimo")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt2;
+					} else if (expAsunto.equals("Tesorer\u00eda")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt2;
+					}
+				}
+				else {
+					if(expAsunto.equals("Comercial")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt3;
+					} else if (expAsunto.equals("Operativo")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt3;
+					} else if (expAsunto.equals("Tesorer\u00eda")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt3;
+					} else if (expAsunto.equals("Finanzas")) {
+						integracion="Integración de Documentos%'";
+						revision="Revisar documentos%'";
+						aprobacion="Aprobar %'";
+						queryTxt = queryTxt3;
+					}
 				}
 			}
 		} else if (expNumero.contains("PMI-14E-058-001")) {
@@ -345,6 +380,8 @@ public class IntegradorDocx {
 		try {
 			//Obten integrador, revisor y aprobador
 			parambean = this.identificarNumeroExpediente(iDfSession, parambean, asuntoSubexpediente);
+			log.info("Integrador:"+parambean.getClasificacionArchivisticaNombreResponsableIntegracion());
+			log.info("Revisor:"+parambean.getClasificacionArchivisticaNombreResponsableRevision());
 			//Obten integrador, revisor y aprobador
 		   	numeroPaginas = this.obtenNumeroPaginasFolder(iDfSession, cadidoBean.getIdCadido());			
 			parambean.setPeriodoAdicionalNoHojas(numeroPaginas);

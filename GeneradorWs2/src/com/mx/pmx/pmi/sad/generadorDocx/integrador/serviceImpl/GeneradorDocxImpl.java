@@ -78,7 +78,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			List<ParametrosDocumentoDto> listaParametros = new ArrayList<ParametrosDocumentoDto>();
 			ParametrosDocumentoDto parametrosDocumentoDto = new ParametrosDocumentoDto();
 			String asuntoSubexpediente = parametros.get("asuntoSubexpediente");
-//			if(asuntoSubexpediente==null||asuntoSubexpediente.equals(""))
+//			if(asuntoSubexpediente==null||asuntoSubexpediente.equals("")) 
 //				paramBean.setPeriodoAdicionalNoExpediente(generadorBean.getNombreDoc());
 			paramBean = integradorDocx.integraDatosCaratula(paramBean, parametros, generadorBean.getUserName(), asuntoSubexpediente);
 			parametrosDocumentoDto.setIdDocumentoPlantilla("090000018000ed3e");

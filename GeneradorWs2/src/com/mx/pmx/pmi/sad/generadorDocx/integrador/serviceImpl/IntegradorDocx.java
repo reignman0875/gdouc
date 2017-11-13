@@ -304,6 +304,7 @@ public class IntegradorDocx {
 		if(r_object_id!=null&&r_object_id.trim().length()>0&&!r_object_id.trim().equals("0000000000000000")) {
 			String getQuery = "select object_name, ar_numr_expdnt, ar_fech_cierr, ar_serie_docmntl from pmx_pmi_expediente where r_object_id = '"
 					+ r_object_id + "'";
+			log.info("Query para obtener datos del expediente para la caratula:"+getQuery);
 			IDfQuery query = new DfQuery(getQuery);
 			IDfCollection resultSet = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			while (resultSet.next()) {
@@ -363,8 +364,8 @@ public class IntegradorDocx {
 	//alter group pmx_pmi_t_juicios add (select user_name from dm_user where user_login_name = 'romero ortiz, francisco')
 //	 select user_login_name from dm_user where user_name = 'Hernandez Guzman, Ariadna'
 //	 select ar_serie_docmntl from pmx_pmi_expediente where r_object_id = ''
-	 	
-	 	
+	 	 
+	 	 
 
 	public CaratulaBean integraDatosCaratulaDocumentum(CaratulaBean parambean, Map<String, String> parametros,
 			String userLT, String asuntoSubexpediente) throws Exception {
@@ -445,6 +446,37 @@ public class IntegradorDocx {
 //				e.printStackTrace();
 //			}
 //		}
+		
+//		destinoFinalHistorico
+//		destinoFinalBaja
+		IDfSession iDfSession = documentumService.getSession(userLT);
+		String destinoStr;
+		try {
+			String query="SELECT * FROM dm_dbo.CADIDO " + 
+					"WHERE codigo_cica IN (SELECT ar_serie_docmntl FROM pmx_pmi_expediente " + 
+					"WHERE ar_numr_expdnt = '"+parambean.getPeriodoAdicionalNoExpediente()+"')";
+			IDfQuery queryHist = new DfQuery(query);
+			log.info("Query para obtener datos del CADIDO:"+query);
+			IDfCollection col = queryHist.execute(iDfSession, IDfQuery.DF_READ_QUERY);		   	
+			while(col.next()) {
+				destinoStr=col.getString("destino_final");
+				if(destinoStr.trim().equals("Eliminación")) {
+					parambean.setDestinoFinalBaja("X");
+					
+				}
+				else {
+					parambean.setDestinoFinalHistorico("X");
+				}
+			}
+//			if(parambean.getDestinoFinalBaja()
+			
+		} catch (DfException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			documentumService.releaseSession(iDfSession);
+		}
+		
 				
 		if(parambean.getValorDocumentalAdministrativo()!=null&&!parambean.getValorDocumentalAdministrativo().trim().equals(""))
 			parambean.setValorDocumentalAdministrativo(parambean.getValorDocumentalAdministrativo().trim().equals("true")?"X":"");
@@ -735,6 +767,7 @@ public class IntegradorDocx {
 		String sQuery1 = "SELECT DISTINCT(child_id) as child_id FROM dm_relation "
 				+ "WHERE relation_name = 'pmx_carpetas_integrac_1' AND parent_id IN "
 				+ "(SELECT r_object_id FROM pmx_carpetas_integracio WHERE "
+				+ "estado = 'Creada' and "
 				+ "linea_de_negocio = '" + indiceCarpetaBean.getLineaNegocio() + "' "
 				+ "AND a_os = " + indiceCarpetaBean.getAnio()
 				+ " AND meses = " + indiceCarpetaBean.getMes()
@@ -743,8 +776,10 @@ public class IntegradorDocx {
 			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_estrtg_comrcl, r_creation_date "
-					+ " FROM pmx_pmi_ecexpcomrop WHERE r_object_id IN "
+			String sQuery2 = "SELECT  subexp.r_object_id, subexp.object_name, subexp.ar_numr_expdnt, exp.n_estrtg_comrcl, subexp.r_creation_date " + 
+					"FROM pmx_pmi_ecexpcomrop subexp, pmx_pmi_ecexpcomrop exp " + 
+					"WHERE (ANY subexp.i_folder_id = exp.r_object_id) " + 
+					"AND subexp.r_object_id IN "
 					+ " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
 			String sQuery2_7 = new String();
 			int i=0, k;			
@@ -780,14 +815,14 @@ public class IntegradorDocx {
 					pTot += resultSet6.getInt("total_pag");
 				}
 				k = 1;
-				repl1 = new HashMap<String, String>();
-				repl1.put("SJ_" + (k++), resultSet2.getString("n_estrtg_comrcl"));
-				repl1.put("SJ_" + (k++), " ");
-				repl1.put("SJ_" + (k++), resultSet2.getString("r_creation_date"));
-				repl1.put("SJ_" + (k++), " ");
-				repl1.put("SJ_" + (k++), numPaginas);
-				repl1.put("SJ_" + (k++), numTomo);
-				listMap.add(repl1);
+//				repl1 = new HashMap<String, String>();
+//				repl1.put("SJ_" + (k++), resultSet2.getString("n_estrtg_comrcl"));
+//				repl1.put("SJ_" + (k++), " ");
+//				repl1.put("SJ_" + (k++), resultSet2.getString("r_creation_date"));
+//				repl1.put("SJ_" + (k++), " ");
+//				repl1.put("SJ_" + (k++), numPaginas);
+//				repl1.put("SJ_" + (k++), numTomo);
+//				listMap.add(repl1);
 				log.info("Se ejecutara el query:"+sQuery3);
 				IDfQuery dQuery3 = new DfQuery(sQuery3);
 				IDfCollection resultSet3 = dQuery3.execute(iDfSession, IDfQuery.DF_READ_QUERY);
@@ -808,9 +843,12 @@ public class IntegradorDocx {
 						indiceCarpetaBean.setRecepcionExpedientes(wsFirm.getFirmaVistoBueno()!=null?wsFirm.getFirmaVistoBueno():" ");
 						k = 1;
 						repl1 = new HashMap<String, String>();
-						repl1.put("SJ_" + (k++), " ");
+
+						repl1.put("SJ_" + (k++), resultSet2.getString("n_estrtg_comrcl"));
+//repl1.put("SJ_" + (k++), " ");
 						repl1.put("SJ_" + (k++), resultSet3.getString("n_numr_ordn_relcnd"));
-						repl1.put("SJ_" + (k++), " ");
+						repl1.put("SJ_" + (k++), resultSet2.getString("r_creation_date"));
+//						repl1.put("SJ_" + (k++), " ");
 						repl1.put("SJ_" + (k++), wsFirm.getFechaTrade().toString());
 						repl1.put("SJ_" + (k++), resultSet4.getString("total_pag"));
 						repl1.put("SJ_" + (k++), resultSet4.getString("num_tomo"));
@@ -837,6 +875,7 @@ public class IntegradorDocx {
 		documentumService.releaseSession(iDfSession);
 	}
 		indiceCarpetaBean.setTotalHojas(new Integer(pTot).toString());
+		log.info("ContenidoTablaIndice:"+listMap.toString());
 		return listMap;
 	}
 	public IndiceCarpetaBean integraIndiceCarpetaC(GeneradorBean generadorBean, Map<String,String> parametros) throws Exception{
@@ -864,6 +903,7 @@ public class IntegradorDocx {
 				+ "WHERE relation_name = 'pmx_carpetas_integrac_1' AND parent_id IN "
 				+ "(SELECT r_object_id FROM pmx_carpetas_integracio WHERE "
 				+ "contraparte = '" + indiceCarpetaBean.getContraparte() + "' "
+				+ "AND estado = 'Creada' "
 				+ "AND a_os = " + indiceCarpetaBean.getAnio()
 				+ " AND meses = " + indiceCarpetaBean.getMes()
 				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
@@ -871,9 +911,10 @@ public class IntegradorDocx {
 			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, n_contrprt, r_creation_date "
-					+ " FROM pmx_pmi_contrexpcrud WHERE r_object_id IN "
-					+ " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
+			String sQuery2 = "SELECT subexp.r_object_id, subexp.object_name, subexp.ar_numr_expdnt, exp.n_contrprt, subexp.r_creation_date "
+                    + " FROM pmx_pmi_contrexpcrud subexp, pmx_pmi_contrexpcrud exp WHERE (ANY subexp.i_folder_id = exp.r_object_id) AND subexp.r_object_id IN "
+                    + " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
+
 			String sQuery2_7 = new String();
 			int i=0, k;			
 			while (resultSet.next()) {
@@ -984,16 +1025,20 @@ public class IntegradorDocx {
 				+ "WHERE relation_name = 'pmx_carpetas_integrac_1' AND parent_id IN "
 				+ "(SELECT r_object_id FROM pmx_carpetas_integracio WHERE "
 				+ "area_contractual = '" + indiceCarpetaBean.getContraparte() + "' "
+				+ "AND estado = 'Creada' "
 				+ "AND a_os = " + indiceCarpetaBean.getAnio()
 				+ " AND meses = " + indiceCarpetaBean.getMes()
 				+ " AND subexpediente = '"	+ indiceCarpetaBean.getSubexpediente() + "')";
+		
+		
 		try {
 			log.info("Se ejecutara el query:"+sQuery1);
 			IDfQuery dQuery1 = new DfQuery(sQuery1);
 			IDfCollection resultSet = dQuery1.execute(iDfSession, IDfQuery.DF_READ_QUERY);
-			String sQuery2 = "SELECT r_folder_path, r_object_id, object_name, ar_numr_expdnt, area_contractual, r_creation_date "
-					+ " FROM pmx_pmi_comrcld_std WHERE r_object_id IN "
-					+ " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
+			String sQuery2 = "SELECT subexp.r_object_id, subexp.object_name, subexp.ar_numr_expdnt, exp.area_contractual, subexp.r_creation_date "
+                    + " FROM pmx_pmi_comrcld_std subexp, pmx_pmi_comrcld_std exp WHERE (ANY subexp.i_folder_id = exp.r_object_id) AND subexp.r_object_id IN "
+                    + " (SELECT i_folder_id FROM dm_document WHERE r_object_id IN (";
+
 			String sQuery2_7 = new String();
 			int i=0, k;			
 			while (resultSet.next()) {
@@ -2250,21 +2295,27 @@ public class IntegradorDocx {
 				+ "'";
 
 
+		String sQueryMes = "SELECT mes from pmx_pmi_comrcld_std where ar_numr_expdnt = '"	+ expediente + "'";
+		
 		
 		String getOrdenesQuery = "SELECT distinct orden_relacionada FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 				+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente + "'";
 
 		IDfQuery query = new DfQuery(getOrdenesQuery);
 		IDfQuery query0 = new DfQuery(getAreaContrQuery);
-		try {
+		IDfQuery queryMes = new DfQuery(sQueryMes);
+		
+		try {		
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			IDfCollection collArCnRelacionadas = query0.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			IDfCollection collMes = queryMes.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			collArCnRelacionadas.next();
+			collMes.next();
 			while (collOrdenesRelacionadas.next()) {
 				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
+				
+				checklistComercialEstadoBean.setMesEntrega(ObtenMes.numeroLetra(collMes.getString("mes")));
 				checklistComercialEstadoBean.setAreaContractual(collArCnRelacionadas.getString("area_contractual"));
-				
-				
 				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
 				log.info("Orden relacionada para generar checklist:"+ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenRelacionada(ordenRelacionada);

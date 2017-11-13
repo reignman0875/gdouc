@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Caratula")
 public class CaratulaBean extends PadreBean {
 	public CaratulaBean() {
+		destinoFinalHistorico = destinoFinalBaja =
 		unidadAdminsitrativa = clasificacionReservada = clasificacionConfidencial = clasificacionFechaClasificacion = reservaDel = reservaAl
 				= reservaFundamentoLegal = reservaOtros = reservaAmplicacionDel = reservaAmplicacionAl = reservaNombreTitularUnidad 
 				= desclasificacionFecha = desclasificacionNombreTitularUnidad = clasificacionArchivisticaNombreResponsableIntegracion
@@ -17,6 +18,8 @@ public class CaratulaBean extends PadreBean {
 				= periodoAdicionalNoHojas = periodoAdicionalNoPaginas = new String();
 	}
 
+	private String destinoFinalHistorico;
+	private String destinoFinalBaja;
 	private String unidadAdminsitrativa;
 	private String clasificacionReservada;
 	private String clasificacionConfidencial;
@@ -49,6 +52,20 @@ public class CaratulaBean extends PadreBean {
 	private String periodoAdicionalNoHojas;
 	private String periodoAdicionalNoPaginas;
 	
+	
+	
+	public String getDestinoFinalHistorico() {
+		return destinoFinalHistorico;
+	}
+	public void setDestinoFinalHistorico(String destinoFinalHistorico) {
+		this.destinoFinalHistorico = destinoFinalHistorico;
+	}
+	public String getDestinoFinalBaja() {
+		return destinoFinalBaja;
+	}
+	public void setDestinoFinalBaja(String destinoFinalBaja) {
+		this.destinoFinalBaja = destinoFinalBaja;
+	}
 	public String getDesclasificacionNombreTitularUnidad() {
 		return desclasificacionNombreTitularUnidad;
 	}

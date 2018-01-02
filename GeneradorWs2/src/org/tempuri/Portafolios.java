@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Portafolios complex type.
+ * <p>Clase Java para Portafolios complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Portafolios">
@@ -42,7 +42,7 @@ public class Portafolios {
     protected String real;
 
     /**
-     * Gets the value of the profitCenter property.
+     * Obtiene el valor de la propiedad profitCenter.
      * 
      * @return
      *     possible object is
@@ -54,7 +54,7 @@ public class Portafolios {
     }
 
     /**
-     * Sets the value of the profitCenter property.
+     * Define el valor de la propiedad profitCenter.
      * 
      * @param value
      *     allowed object is
@@ -66,7 +66,7 @@ public class Portafolios {
     }
 
     /**
-     * Gets the value of the estrategia property.
+     * Obtiene el valor de la propiedad estrategia.
      * 
      * @return
      *     possible object is
@@ -78,7 +78,7 @@ public class Portafolios {
     }
 
     /**
-     * Sets the value of the estrategia property.
+     * Define el valor de la propiedad estrategia.
      * 
      * @param value
      *     allowed object is
@@ -90,7 +90,7 @@ public class Portafolios {
     }
 
     /**
-     * Gets the value of the real property.
+     * Obtiene el valor de la propiedad real.
      * 
      * @return
      *     possible object is
@@ -102,7 +102,7 @@ public class Portafolios {
     }
 
     /**
-     * Sets the value of the real property.
+     * Define el valor de la propiedad real.
      * 
      * @param value
      *     allowed object is

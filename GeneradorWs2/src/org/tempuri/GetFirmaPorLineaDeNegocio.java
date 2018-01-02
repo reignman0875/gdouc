@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType>
@@ -42,7 +42,7 @@ public class GetFirmaPorLineaDeNegocio {
     protected String lineaNegocio;
 
     /**
-     * Gets the value of the ordenComercial property.
+     * Obtiene el valor de la propiedad ordenComercial.
      * 
      * @return
      *     possible object is
@@ -54,7 +54,7 @@ public class GetFirmaPorLineaDeNegocio {
     }
 
     /**
-     * Sets the value of the ordenComercial property.
+     * Define el valor de la propiedad ordenComercial.
      * 
      * @param value
      *     allowed object is
@@ -66,7 +66,7 @@ public class GetFirmaPorLineaDeNegocio {
     }
 
     /**
-     * Gets the value of the lineaNegocio property.
+     * Obtiene el valor de la propiedad lineaNegocio.
      * 
      * @return
      *     possible object is
@@ -78,7 +78,7 @@ public class GetFirmaPorLineaDeNegocio {
     }
 
     /**
-     * Sets the value of the lineaNegocio property.
+     * Define el valor de la propiedad lineaNegocio.
      * 
      * @param value
      *     allowed object is

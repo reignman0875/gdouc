@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType>
@@ -36,7 +36,7 @@ public class GetDatosPeopleSoftResponse {
     protected ArrayOfDatosPeoplesoft getDatosPeopleSoftResult;
 
     /**
-     * Gets the value of the getDatosPeopleSoftResult property.
+     * Obtiene el valor de la propiedad getDatosPeopleSoftResult.
      * 
      * @return
      *     possible object is
@@ -48,7 +48,7 @@ public class GetDatosPeopleSoftResponse {
     }
 
     /**
-     * Sets the value of the getDatosPeopleSoftResult property.
+     * Define el valor de la propiedad getDatosPeopleSoftResult.
      * 
      * @param value
      *     allowed object is

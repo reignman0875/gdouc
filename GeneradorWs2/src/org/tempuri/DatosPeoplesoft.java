@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for DatosPeoplesoft complex type.
+ * <p>Clase Java para DatosPeoplesoft complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="DatosPeoplesoft">
@@ -19,8 +19,10 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="matricula" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="usuario" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="segundo_apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="full_name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="antiguedad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="puesto" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -44,8 +46,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DatosPeoplesoft", propOrder = {
     "matricula",
     "nombre",
+    "usuario",
     "apellido",
     "segundoApellido",
+    "fullName",
     "curp",
     "antiguedad",
     "puesto",
@@ -62,9 +66,12 @@ public class DatosPeoplesoft {
 
     protected int matricula;
     protected String nombre;
+    protected String usuario;
     protected String apellido;
     @XmlElement(name = "segundo_apellido")
     protected String segundoApellido;
+    @XmlElement(name = "full_name")
+    protected String fullName;
     protected String curp;
     protected String antiguedad;
     protected String puesto;
@@ -84,7 +91,7 @@ public class DatosPeoplesoft {
     protected String dirSegApellido;
 
     /**
-     * Gets the value of the matricula property.
+     * Obtiene el valor de la propiedad matricula.
      * 
      */
     public int getMatricula() {
@@ -92,7 +99,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the matricula property.
+     * Define el valor de la propiedad matricula.
      * 
      */
     public void setMatricula(int value) {
@@ -100,7 +107,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -112,7 +119,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -124,7 +131,31 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the apellido property.
+     * Obtiene el valor de la propiedad usuario.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * Define el valor de la propiedad usuario.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUsuario(String value) {
+        this.usuario = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad apellido.
      * 
      * @return
      *     possible object is
@@ -136,7 +167,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the apellido property.
+     * Define el valor de la propiedad apellido.
      * 
      * @param value
      *     allowed object is
@@ -148,7 +179,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the segundoApellido property.
+     * Obtiene el valor de la propiedad segundoApellido.
      * 
      * @return
      *     possible object is
@@ -160,7 +191,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the segundoApellido property.
+     * Define el valor de la propiedad segundoApellido.
      * 
      * @param value
      *     allowed object is
@@ -172,7 +203,31 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the curp property.
+     * Obtiene el valor de la propiedad fullName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFullName() {
+        return fullName;
+    }
+
+    /**
+     * Define el valor de la propiedad fullName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFullName(String value) {
+        this.fullName = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad curp.
      * 
      * @return
      *     possible object is
@@ -184,7 +239,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the curp property.
+     * Define el valor de la propiedad curp.
      * 
      * @param value
      *     allowed object is
@@ -196,7 +251,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the antiguedad property.
+     * Obtiene el valor de la propiedad antiguedad.
      * 
      * @return
      *     possible object is
@@ -208,7 +263,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the antiguedad property.
+     * Define el valor de la propiedad antiguedad.
      * 
      * @param value
      *     allowed object is
@@ -220,7 +275,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the puesto property.
+     * Obtiene el valor de la propiedad puesto.
      * 
      * @return
      *     possible object is
@@ -232,7 +287,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the puesto property.
+     * Define el valor de la propiedad puesto.
      * 
      * @param value
      *     allowed object is
@@ -244,7 +299,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the area property.
+     * Obtiene el valor de la propiedad area.
      * 
      * @return
      *     possible object is
@@ -256,7 +311,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the area property.
+     * Define el valor de la propiedad area.
      * 
      * @param value
      *     allowed object is
@@ -268,7 +323,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the areaNombre property.
+     * Obtiene el valor de la propiedad areaNombre.
      * 
      * @return
      *     possible object is
@@ -280,7 +335,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the areaNombre property.
+     * Define el valor de la propiedad areaNombre.
      * 
      * @param value
      *     allowed object is
@@ -292,7 +347,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the areaApellido property.
+     * Obtiene el valor de la propiedad areaApellido.
      * 
      * @return
      *     possible object is
@@ -304,7 +359,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the areaApellido property.
+     * Define el valor de la propiedad areaApellido.
      * 
      * @param value
      *     allowed object is
@@ -316,7 +371,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the areaSegApellido property.
+     * Obtiene el valor de la propiedad areaSegApellido.
      * 
      * @return
      *     possible object is
@@ -328,7 +383,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the areaSegApellido property.
+     * Define el valor de la propiedad areaSegApellido.
      * 
      * @param value
      *     allowed object is
@@ -340,7 +395,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the direccion property.
+     * Obtiene el valor de la propiedad direccion.
      * 
      * @return
      *     possible object is
@@ -352,7 +407,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the direccion property.
+     * Define el valor de la propiedad direccion.
      * 
      * @param value
      *     allowed object is
@@ -364,7 +419,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the dirNombre property.
+     * Obtiene el valor de la propiedad dirNombre.
      * 
      * @return
      *     possible object is
@@ -376,7 +431,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the dirNombre property.
+     * Define el valor de la propiedad dirNombre.
      * 
      * @param value
      *     allowed object is
@@ -388,7 +443,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the dirApellido property.
+     * Obtiene el valor de la propiedad dirApellido.
      * 
      * @return
      *     possible object is
@@ -400,7 +455,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the dirApellido property.
+     * Define el valor de la propiedad dirApellido.
      * 
      * @param value
      *     allowed object is
@@ -412,7 +467,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Gets the value of the dirSegApellido property.
+     * Obtiene el valor de la propiedad dirSegApellido.
      * 
      * @return
      *     possible object is
@@ -424,7 +479,7 @@ public class DatosPeoplesoft {
     }
 
     /**
-     * Sets the value of the dirSegApellido property.
+     * Define el valor de la propiedad dirSegApellido.
      * 
      * @param value
      *     allowed object is

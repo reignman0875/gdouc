@@ -10,9 +10,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for Firmas complex type.
+ * <p>Clase Java para Firmas complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Firmas">
@@ -59,7 +59,7 @@ public class Firmas {
     protected String firmaVistoBueno;
 
     /**
-     * Gets the value of the fechaTrade property.
+     * Obtiene el valor de la propiedad fechaTrade.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the fechaTrade property.
+     * Define el valor de la propiedad fechaTrade.
      * 
      * @param value
      *     allowed object is
@@ -83,7 +83,7 @@ public class Firmas {
     }
 
     /**
-     * Gets the value of the firmaIntegrador property.
+     * Obtiene el valor de la propiedad firmaIntegrador.
      * 
      * @return
      *     possible object is
@@ -95,7 +95,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the firmaIntegrador property.
+     * Define el valor de la propiedad firmaIntegrador.
      * 
      * @param value
      *     allowed object is
@@ -107,7 +107,7 @@ public class Firmas {
     }
 
     /**
-     * Gets the value of the firmaRevisor property.
+     * Obtiene el valor de la propiedad firmaRevisor.
      * 
      * @return
      *     possible object is
@@ -119,7 +119,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the firmaRevisor property.
+     * Define el valor de la propiedad firmaRevisor.
      * 
      * @param value
      *     allowed object is
@@ -131,7 +131,7 @@ public class Firmas {
     }
 
     /**
-     * Gets the value of the firmaAprobacion property.
+     * Obtiene el valor de la propiedad firmaAprobacion.
      * 
      * @return
      *     possible object is
@@ -143,7 +143,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the firmaAprobacion property.
+     * Define el valor de la propiedad firmaAprobacion.
      * 
      * @param value
      *     allowed object is
@@ -155,7 +155,7 @@ public class Firmas {
     }
 
     /**
-     * Gets the value of the firmaRevisionFisica property.
+     * Obtiene el valor de la propiedad firmaRevisionFisica.
      * 
      * @return
      *     possible object is
@@ -167,7 +167,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the firmaRevisionFisica property.
+     * Define el valor de la propiedad firmaRevisionFisica.
      * 
      * @param value
      *     allowed object is
@@ -179,7 +179,7 @@ public class Firmas {
     }
 
     /**
-     * Gets the value of the firmaVistoBueno property.
+     * Obtiene el valor de la propiedad firmaVistoBueno.
      * 
      * @return
      *     possible object is
@@ -191,7 +191,7 @@ public class Firmas {
     }
 
     /**
-     * Sets the value of the firmaVistoBueno property.
+     * Define el valor de la propiedad firmaVistoBueno.
      * 
      * @param value
      *     allowed object is

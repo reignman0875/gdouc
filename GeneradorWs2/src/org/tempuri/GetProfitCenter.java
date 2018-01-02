@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType>
@@ -42,7 +42,7 @@ public class GetProfitCenter {
     protected String portFullName;
 
     /**
-     * Gets the value of the baseDatos property.
+     * Obtiene el valor de la propiedad baseDatos.
      * 
      * @return
      *     possible object is
@@ -54,7 +54,7 @@ public class GetProfitCenter {
     }
 
     /**
-     * Sets the value of the baseDatos property.
+     * Define el valor de la propiedad baseDatos.
      * 
      * @param value
      *     allowed object is
@@ -66,7 +66,7 @@ public class GetProfitCenter {
     }
 
     /**
-     * Gets the value of the portFullName property.
+     * Obtiene el valor de la propiedad portFullName.
      * 
      * @return
      *     possible object is
@@ -78,7 +78,7 @@ public class GetProfitCenter {
     }
 
     /**
-     * Sets the value of the portFullName property.
+     * Define el valor de la propiedad portFullName.
      * 
      * @param value
      *     allowed object is

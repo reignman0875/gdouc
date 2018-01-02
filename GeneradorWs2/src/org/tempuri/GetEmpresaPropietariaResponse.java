@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="getEmpresaPropietariaResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="getEmpresaPropietariaResult" type="{http://tempuri.org/}ArrayOfString" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,29 +33,29 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "getEmpresaPropietariaResponse")
 public class GetEmpresaPropietariaResponse {
 
-    protected String getEmpresaPropietariaResult;
+    protected ArrayOfString getEmpresaPropietariaResult;
 
     /**
-     * Gets the value of the getEmpresaPropietariaResult property.
+     * Obtiene el valor de la propiedad getEmpresaPropietariaResult.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ArrayOfString }
      *     
      */
-    public String getGetEmpresaPropietariaResult() {
+    public ArrayOfString getGetEmpresaPropietariaResult() {
         return getEmpresaPropietariaResult;
     }
 
     /**
-     * Sets the value of the getEmpresaPropietariaResult property.
+     * Define el valor de la propiedad getEmpresaPropietariaResult.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ArrayOfString }
      *     
      */
-    public void setGetEmpresaPropietariaResult(String value) {
+    public void setGetEmpresaPropietariaResult(ArrayOfString value) {
         this.getEmpresaPropietariaResult = value;
     }
 

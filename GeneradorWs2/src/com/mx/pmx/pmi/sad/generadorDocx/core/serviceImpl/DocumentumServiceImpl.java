@@ -50,7 +50,7 @@ public class DocumentumServiceImpl implements DocumentumService {
 			repository = prop.getProperty("repo");
 				password = new String(RegistryPasswordUtils.decrypt(prop.getProperty("pwd")).trim());
 //				password = new String((prop.getProperty("pwd")).trim());
-				System.out.println("PasswordQA:"+password);
+//				System.out.println("PasswordQA:"+password);
 				
 			} catch (Exception e){
 				System.out.println("Exception: " + e);

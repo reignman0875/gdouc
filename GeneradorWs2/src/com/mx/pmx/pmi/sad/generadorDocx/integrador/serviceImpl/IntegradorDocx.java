@@ -2277,6 +2277,10 @@ public class IntegradorDocx {
 		ChecklistComercialEstadoBean checklistComercialEstadoBean = null;
 		IDfSession iDfSession = documentumService.getSession(userLT);
 
+		WSDocumentum wSDocumentum = new WSDocumentum();
+		WSDocumentumSoap wSDocumentumSoap = wSDocumentum.getWSDocumentumSoap();
+		String producto = null;
+		
 		String ordenRelacionada = null;
 		String getDocumentosQuery = null;
 		IDfQuery queryDoc = null;
@@ -2320,6 +2324,11 @@ public class IntegradorDocx {
 				log.info("Orden relacionada para generar checklist:"+ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenRelacionada(ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
+				
+				producto = wSDocumentumSoap.getProducto(ordenRelacionada);
+				checklistComercialEstadoBean.setProducto(producto);
+				
+				
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id  FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
 						+ "' AND orden_relacionada = '" + ordenRelacionada + "'";

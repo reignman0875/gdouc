@@ -142,6 +142,16 @@ public class IntegradorDocx {
 				+ "%') AND "
 				+ "task_name like '";
 		
+		String queryTxt4 = "SELECT wi.r_performer_name as r_performer_name "
+				+ " FROM dmi_workitem wi, dm_workflow wf, dm_process_r pr  "
+				+ " WHERE wi.r_workflow_id = wf.r_object_id  AND wf.process_id = pr.r_object_id  "
+				+ " AND wi.r_act_def_id = pr.r_act_def_id AND wi.r_queue_item_id <> '0000000000000000' "
+				+ " AND wi.r_workflow_id IN (SELECT r_object_id FROM dm_workflow WHERE object_name = '"
+				+ expNumero + "-" + expAsunto
+				+ "')  "
+				+ " AND pr.r_act_name like '";
+		
+		
 				String integracion="Integración de Documentos%'",revision="Revisar documentos%'",aprobacion="Aprobar %'";
 				
 				
@@ -209,22 +219,22 @@ public class IntegradorDocx {
 						integracion="Integración de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
-						queryTxt = queryTxt3;
+						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Operativo")) {
 						integracion="Integración de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
-						queryTxt = queryTxt3;
+						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Tesorer\u00eda")) {
 						integracion="Integración de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
-						queryTxt = queryTxt3;
+						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Finanzas")) {
 						integracion="Integración de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
-						queryTxt = queryTxt3;
+						queryTxt = queryTxt4;
 					}
 				}
 			}
@@ -2273,10 +2283,12 @@ public class IntegradorDocx {
 	
 	public List<ChecklistComercialEstadoBean> integraChecklistsComercialEstado(String asuntoSubexpediente, String expediente,
 			String userLT) throws DfException {
+		log.info("Checklist Comercial de Estado");
 		List<ChecklistComercialEstadoBean> listChecklistComercialEstadoBean = new ArrayList<ChecklistComercialEstadoBean>();
 		ChecklistComercialEstadoBean checklistComercialEstadoBean = null;
+		log.info("antes Documentum");
 		IDfSession iDfSession = documentumService.getSession(userLT);
-
+		log.info("despues Documentum");
 		WSDocumentum wSDocumentum = new WSDocumentum();
 		WSDocumentumSoap wSDocumentumSoap = wSDocumentum.getWSDocumentumSoap();
 		String producto = null;
@@ -2291,6 +2303,7 @@ public class IntegradorDocx {
 		String noPag = null;
 		int seleccionado;
 		int digital;
+		String[] elementoOR;
 
 		String getAreaContrQuery = "select area_contractual from pmx_pmi_comrcld_std   where  ar_numr_expdnt= '"
 				+ expediente
@@ -2309,20 +2322,29 @@ public class IntegradorDocx {
 		IDfQuery query0 = new DfQuery(getAreaContrQuery);
 		IDfQuery queryMes = new DfQuery(sQueryMes);
 		
-		try {		
+		try {
+
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			
 			IDfCollection collArCnRelacionadas = query0.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			IDfCollection collMes = queryMes.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			collArCnRelacionadas.next();
 			collMes.next();
 			while (collOrdenesRelacionadas.next()) {
 				checklistComercialEstadoBean = new ChecklistComercialEstadoBean();
+				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
+				elementoOR = ordenRelacionada.split("-");
+				if (elementoOR.length > 1) {
+					if ((elementoOR.length == 2 && elementoOR[1].length() >= 3
+							&& elementoOR[0].toLowerCase().contains("v"))
+							|| elementoOR[0].toLowerCase().endsWith("v")) {
 				
+						System.out.println("Orden que genera Checklist"+ordenRelacionada);
 				checklistComercialEstadoBean.setMesEntrega(ObtenMes.numeroLetra(collMes.getString("mes")));
 				checklistComercialEstadoBean.setAreaContractual(collArCnRelacionadas.getString("area_contractual"));
-				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
+				
 				log.info("Orden relacionada para generar checklist:"+ordenRelacionada);
-				checklistComercialEstadoBean.setOrdenRelacionada(ordenRelacionada);
+//				checklistComercialEstadoBean.setOrdenRelacionada(ordenRelacionada);
 				checklistComercialEstadoBean.setOrdenExpediente(ordenRelacionada);
 				
 				producto = wSDocumentumSoap.getProducto(ordenRelacionada);
@@ -2347,6 +2369,9 @@ public class IntegradorDocx {
 							seleccionado, digital, noPag);
 				}
 				listChecklistComercialEstadoBean.add(checklistComercialEstadoBean);
+					}
+					System.out.println("Orden que no genera Checklist"+ordenRelacionada);
+				}
 			}
 
 		} catch (DfException e) {
@@ -2367,7 +2392,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setDistribucionIngresos(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setDistribucionIngresosC(checked);
 			}
 		}
@@ -2376,7 +2401,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setCalculoPrecioComercializador(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setCalculoPrecioComercializadorC(checked);
 			}
 		}
@@ -2385,7 +2410,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setCalculoPrecioComprador(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setCalculoPrecioCompradorC(checked);
 			}
 		}
@@ -2394,7 +2419,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setCalculoPrecioComprador(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setCalculoPrecioCompradorC(checked);
 			}
 		}
@@ -2403,7 +2428,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setCorreoCNH(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setCorreoCNHC(checked);
 			}
 		}
@@ -2412,7 +2437,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setMemorandumSolicitud(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setMemorandumSolicitudC(checked);
 			}
 		}
@@ -2421,7 +2446,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setComunicacionesCNH(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setComunicacionesCNHC(checked);
 			}
 		}
@@ -2430,7 +2455,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setComunicacionesComprador(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setComunicacionesCompradorC(checked);
 			}
 		}
@@ -2439,7 +2464,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setComunicacionesContratista(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setComunicacionesContratistaC(checked);
 			}
 		}
@@ -2448,7 +2473,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setComunicacionesFMP(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setComunicacionesFMPC(checked);
 			}
 		}
@@ -2457,7 +2482,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setComunicacionesCRE(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setComunicacionesCREC(checked);
 			}
 		}
@@ -2466,7 +2491,7 @@ public class IntegradorDocx {
 			if (seleccionado == seleccionadoDoc) {
 				bean.setOtros(checked);
 			}
-			if (digital == seleccionadoDoc) {
+			if (seleccionado == seleccionadoDoc && digital != seleccionadoDoc) {
 				bean.setOtrosC(checked);
 			}
 		}

@@ -157,6 +157,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				} 
 
 				else if (asuntoSubexpediente.equals("Comercial")) {
+					log.info("Comercial de estado");
 					generaChecklistsComercialEstado(asuntoSubexpediente, numeroExpediente, generadorBean);
 				}
 				// Reclamos por demora

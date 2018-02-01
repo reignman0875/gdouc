@@ -265,7 +265,9 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 				sysObj.setContentType(obtenerExtensionDocumentum(documentoDto
 						.getNombreDocumento()));
 				sysObj.setFile(documentoDto.getContenido().getAbsolutePath());
-				// sysObj.setString("id_documento",
+				
+				//TODO: Esto es especifíco de PMI
+				sysObj.setInt("n_numr_pagns",1);
 				// sysObj.getObjectId().getId());
 
 				if (getIdFolder(session, documentoDto.getRutaDocumento())

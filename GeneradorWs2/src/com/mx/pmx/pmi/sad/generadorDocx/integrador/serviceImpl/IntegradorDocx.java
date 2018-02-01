@@ -1161,21 +1161,29 @@ public class IntegradorDocx {
 		String idDocumento = null;
 		String descripcion = null;
 		String hojasDocumento = null;
-		int conteoHojas=1;
+		String conteoHojas = null;
 		String object_id = null;
 		int seleccionado;
 		int digital;
 
 		String getOrdenesQuery = "SELECT distinct orden_relacionada FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 				+ expediente + "'";
+		
+		String getFolderExpedienteQuery = "SELECT r_object_id FROM pmx_pmi_expediente WHERE ar_numr_expdnt = '"+ expediente + "'";
 
 		IDfQuery query = new DfQuery(getOrdenesQuery);
+		IDfQuery query2 = new DfQuery(getFolderExpedienteQuery);
 		try {
 			IDfCollection collOrdenesRelacionadas = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			IDfCollection folderExpediente = query2.execute(iDfSession, IDfQuery.DF_READ_QUERY);
 			
+			while (folderExpediente.next()) {
+				conteoHojas = obtenNumeroPaginasFolder(iDfSession, folderExpediente.getString("r_object_id"));
+				conteoHojas = (Integer.parseInt(conteoHojas)+1)+"";
+			}
 			   
 			while (collOrdenesRelacionadas.next()) {
-				conteoHojas=1;
+//				conteoHojas=1;
 				checklistReclamosBean = new ChecklistReclamosBean();
 				checklistReclamosBean.setFecha(dateFormat.format(cal.getTime()));
 				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
@@ -1192,12 +1200,13 @@ public class IntegradorDocx {
 					seleccionado = collDocumentos.getInt("seleccionado");
 					digital = collDocumentos.getInt("digital");
 					object_id = collDocumentos.getString("object_id");
-					hojasDocumento=this.obtenNumeroPaginasDocumento(iDfSession, object_id);
-					conteoHojas+=Integer.parseInt(hojasDocumento.equals("")?"0":hojasDocumento);
+//					hojasDocumento=this.obtenNumeroPaginasDocumento(iDfSession, object_id);
+//					conteoHojas+=Integer.parseInt(hojasDocumento.equals("")?"0":hojasDocumento);
 					checklistReclamosBean = registraChecklistReclamos(checklistReclamosBean, idDocumento,
 							descripcion, seleccionado, digital);
 				}
-				checklistReclamosBean.setNumeroHojas(Integer.toString(conteoHojas));
+
+				checklistReclamosBean.setNumeroHojas(conteoHojas);
 				listChecklistReclamosBean.add(checklistReclamosBean);
 			}
 

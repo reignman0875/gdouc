@@ -283,18 +283,6 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 				documentoDto.setIdDocumento(sysObj.getObjectId().getId());
 				sysObj.save();
 
-				 // por
-				// que
-				// se
-				// le
-				// pasa
-				// el
-				// id
-				// de
-				// sysObj
-				// a
-				// documentoDto
-
 			}
 
 			session.commitTrans();

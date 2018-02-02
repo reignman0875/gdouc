@@ -347,6 +347,10 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 				 sysObj.setString(qualifierAttribute,
 				 sysObj.getObjectId().getId());
 
+					//TODO: Esto es especifíco de PMI
+					sysObj.setInt("n_numr_pagns",1);
+				 
+				 
 				if (getIdFolder(session, documentoDto.getRutaDocumento())
 						.isNull()) {
 					crearFolder(session, documentoDto.getRutaDocumento());
@@ -389,6 +393,8 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 			sysObj.setFile(documentoDto.getContenido().getAbsolutePath());
 			 sysObj.setString(qualifierAttribute,
 			 sysObj.getObjectId().getId());
+				//TODO: Esto es especifíco de PMI
+				sysObj.setInt("n_numr_pagns",1);
 
 			if (getIdFolder(session, documentoDto.getRutaDocumento()).isNull()) {
 				crearFolder(session, documentoDto.getRutaDocumento());
@@ -431,6 +437,9 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 			 sysObj.setString(qualifierAttribute,
 			 sysObj.getObjectId().getId());
 
+				//TODO: Esto es especifíco de PMI
+				sysObj.setInt("n_numr_pagns",1);
+			 
 			if (getIdFolder(session, documentoDto.getRutaDocumento()).isNull()) {
 				crearFolder(session, documentoDto.getRutaDocumento());
 			}
@@ -539,6 +548,8 @@ public class GestionarDocumentoServiceImpl implements GestionarDocumentoService 
 			sysObj.setFile(documentoDto.getContenido().getAbsolutePath());
 			sysObj.setString(qualifierAttribute,
 					 sysObj.getObjectId().getId());
+			//TODO: Esto es especifíco de PMI
+			sysObj.setInt("n_numr_pagns",1);
 			
 			/*Integración de ACL solo aplica para las caratulas*/
 			if(attr!=null && attr.get("idACL")!=null&&attr.get("isCaratula")!=null&&attr.get("isCaratula").equals("true")) {

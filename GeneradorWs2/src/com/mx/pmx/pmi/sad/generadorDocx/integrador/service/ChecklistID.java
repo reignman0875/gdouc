@@ -116,6 +116,8 @@ public interface ChecklistID {
 	public static String Otros_especificar="336";
 	public static String Documentacion_soporte_cobro = "165";
 	public static String Documentacion_soporte_pago = "166";
+	public static String Demora_Factura_cuentas_cobrar = "677";
+	public static String Demora_Factura_cuentas_pagar = "678";
 	
 	public static String ChecklistReclamos = "7";
 	
@@ -134,6 +136,8 @@ public interface ChecklistID {
 	public static String Solicitud_de_cobro_a_tesoreria = "413";
 	public static String Solicitud_de_pago_a_tesoreria = "421";
 	public static String Comunicaciones = "84";
+	public static String Reclamos_Factura_cuentas_cobrar = "675";
+	public static String Reclamos_Factura_cuentas_pagar = "676";
 	
 	public static String ChecklistsComercialEstado = "8";
 	

@@ -1526,6 +1526,12 @@ public class IntegradorDocx {
 		if (idDocumento.trim().equals(ChecklistID.Comunicaciones) && seleccionado == seleccionadoDoc) {
 			bean.setComunicaciones(checked);
 		}
+		if (idDocumento.trim().equals(ChecklistID.Reclamos_Factura_cuentas_cobrar) && seleccionado == seleccionadoDoc) {
+			bean.setReclamosFacturaCuentasCobrar(checked);
+		}
+		if (idDocumento.trim().equals(ChecklistID.Reclamos_Factura_cuentas_pagar) && seleccionado == seleccionadoDoc) {
+			bean.setReclamosFacturaCuentasPagar(checked);
+		}
 		return bean;
 		}
 	private ChecklistDemorasBean registraChecklistDemoras(ChecklistDemorasBean bean, String idDocumento,
@@ -1550,6 +1556,10 @@ public class IntegradorDocx {
 			bean.setDocumentacionSoporteCobro(checked);
 		}if (idDocumento.trim().equals(ChecklistID.Documentacion_soporte_pago) && seleccionado == seleccionadoDoc) {
 			bean.setDocumentacionSoportePago(checked);
+		}if (idDocumento.trim().equals(ChecklistID.Demora_Factura_cuentas_cobrar) && seleccionado == seleccionadoDoc) {
+			bean.setDemoraFacturaCuentasCobrar(checked);
+		}if (idDocumento.trim().equals(ChecklistID.Demora_Factura_cuentas_pagar) && seleccionado == seleccionadoDoc) {
+			bean.setDemoraFacturaCuentasPagar(checked);
 		}
 		return bean;
 		}

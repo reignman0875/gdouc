@@ -11,7 +11,32 @@ public class ChecklistDemorasBean extends PadreBean {
 				=respaldoNegociacion=respaldoNegociacionC=documentacionSoportePago=documentacionSoportePagoC=documentacionSoporteCobro
 				=documentacionSoporteCobroC=hojaCalculoFinal=hojaCalculoFinalC=solicitudCobroTesoreria=solicitudCobroTesoreriaC
 				=solicitudPagoTesoreria=solicitudPagoTesoreriaC=notaInformativa=notaInformativaC=otrosEspecificar=otrosEspecificar2
-				=numeroFolios=numeroHojas=numeroPaginas=integroNombreFirma=analistaNombreRubrica = new String();
+				=numeroFolios=numeroHojas=numeroPaginas=integroNombreFirma=analistaNombreRubrica 
+				=demoraFacturaCuentasCobrar=demoraFacturaCuentasCobrarC=demoraFacturaCuentasPagar=demoraFacturaCuentasPagarC = new String();
+	}
+	public String getDemoraFacturaCuentasCobrar() {
+		return demoraFacturaCuentasCobrar;
+	}
+	public void setDemoraFacturaCuentasCobrar(String demoraFacturaCuentasCobrar) {
+		this.demoraFacturaCuentasCobrar = demoraFacturaCuentasCobrar;
+	}
+	public String getDemoraFacturaCuentasCobrarC() {
+		return demoraFacturaCuentasCobrarC;
+	}
+	public void setDemoraFacturaCuentasCobrarC(String demoraFacturaCuentasCobrarC) {
+		this.demoraFacturaCuentasCobrarC = demoraFacturaCuentasCobrarC;
+	}
+	public String getDemoraFacturaCuentasPagar() {
+		return demoraFacturaCuentasPagar;
+	}
+	public void setDemoraFacturaCuentasPagar(String demoraFacturaCuentasPagar) {
+		this.demoraFacturaCuentasPagar = demoraFacturaCuentasPagar;
+	}
+	public String getDemoraFacturaCuentasPagarC() {
+		return demoraFacturaCuentasPagarC;
+	}
+	public void setDemoraFacturaCuentasPagarC(String demoraFacturaCuentasPagarC) {
+		this.demoraFacturaCuentasPagarC = demoraFacturaCuentasPagarC;
 	}
 	private String crudo;
 	private String productos;
@@ -38,6 +63,10 @@ public class ChecklistDemorasBean extends PadreBean {
 	private String solicitudPagoTesoreriaC;
 	private String notaInformativa;
 	private String notaInformativaC;
+	private String demoraFacturaCuentasCobrar;
+	private String demoraFacturaCuentasCobrarC;
+	private String demoraFacturaCuentasPagar;
+	private String demoraFacturaCuentasPagarC;
 	private String otrosEspecificar;
 	private String otrosEspecificar2;
 	private String numeroFolios;

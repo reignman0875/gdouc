@@ -12,7 +12,31 @@ public class ChecklistReclamosBean extends PadreBean {
 				=hojaAnalisisViajeCargaDescarga=hojaAnalisisViajeCargaDescargaC=hojaAnalisisVolumenBarco=hojaAnalisisVolumenBarcoC
 				=hojaAnalisisVef=hojaAnalisisVefC=hojaAnalisisTemperaturaCargamento=hojaAnalisisTemperaturaCargamentoC
 				=reporteReanaisisLaboratorio=reporteReanaisisLaboratorioC=notaInformativa=notaInformativaC=integroNombre=numeroHojas
-				=numeroPaginas= new String();
+				=numeroPaginas=reclamosFacturaCuentasCobrar=reclamosFacturaCuentasCobrarC=reclamosFacturaCuentasPagar=reclamosFacturaCuentasPagarC = new String();
+	}
+	public String getReclamosFacturaCuentasCobrar() {
+		return reclamosFacturaCuentasCobrar;
+	}
+	public void setReclamosFacturaCuentasCobrar(String reclamosFacturaCuentasCobrar) {
+		this.reclamosFacturaCuentasCobrar = reclamosFacturaCuentasCobrar;
+	}
+	public String getReclamosFacturaCuentasCobrarC() {
+		return reclamosFacturaCuentasCobrarC;
+	}
+	public void setReclamosFacturaCuentasCobrarC(String reclamosFacturaCuentasCobrarC) {
+		this.reclamosFacturaCuentasCobrarC = reclamosFacturaCuentasCobrarC;
+	}
+	public String getReclamosFacturaCuentasPagar() {
+		return reclamosFacturaCuentasPagar;
+	}
+	public void setReclamosFacturaCuentasPagar(String reclamosFacturaCuentasPagar) {
+		this.reclamosFacturaCuentasPagar = reclamosFacturaCuentasPagar;
+	}
+	public String getReclamosFacturaCuentasPagarC() {
+		return reclamosFacturaCuentasPagarC;
+	}
+	public void setReclamosFacturaCuentasPagarC(String reclamosFacturaCuentasPagarC) {
+		this.reclamosFacturaCuentasPagarC = reclamosFacturaCuentasPagarC;
 	}
 	private String fecha;
 	private String ordenPmi;
@@ -46,6 +70,10 @@ public class ChecklistReclamosBean extends PadreBean {
 	private String reporteReanaisisLaboratorioC;
 	private String notaInformativa;
 	private String notaInformativaC;
+	private String reclamosFacturaCuentasCobrar;
+	private String reclamosFacturaCuentasCobrarC;
+	private String reclamosFacturaCuentasPagar;
+	private String reclamosFacturaCuentasPagarC;
 	private String integroNombre;
 	private String numeroHojas;
 	private String numeroPaginas;

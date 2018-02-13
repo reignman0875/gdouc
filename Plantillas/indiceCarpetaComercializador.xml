@@ -1,0 +1,45 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:tns="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/"
+	xmlns:xmime="http://www.w3.org/2004/11/xmlmime" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<env:Header />
+	<env:Body>
+		<ns0:generaChecklistComercial
+			xmlns:ns0="http://serviceImpl.integrador.generadorDocx.sad.pmi.pmx.mx.com/">
+			<arg1>
+				<rutaDocumento>/PMI/Aplicativo/Integracion Temp</rutaDocumento>
+				<rutaXML>/PMI/Aplicativo/Integracion Temp</rutaXML>
+			</arg1>
+			<arg2>
+				<entry>
+					<key>lineaNegocio</key>
+					<value>-</value>
+				</entry>
+				<entry>
+					<key>contraparte</key>
+					<value>EK-BALAM</value>
+				</entry>
+				<entry>
+					<key>subexpediente</key>
+					<value>Finanzas</value>
+				</entry>
+				<entry>
+					<key>anio</key>
+					<value>2017</value>
+				</entry>
+				<entry>
+					<key>mes</key>
+					<value>6</value>
+				</entry>
+				<entry>
+					<key>numeroExpediente</key>
+					<value>-</value>
+				</entry>
+				<entry>
+					<key>asuntoSubexpediente</key>
+					<value>IndiceCarpetaComercializador</value>
+				</entry>
+			</arg2>
+		</ns0:generaChecklistComercial>
+	</env:Body>
+</env:Envelope>

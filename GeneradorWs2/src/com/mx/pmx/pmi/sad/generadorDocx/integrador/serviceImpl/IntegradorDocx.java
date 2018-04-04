@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.docx4j.model.datastorage.XPathEnhancerParser.main_return;
-import org.tempuri.DatosPeoplesoft;
 import org.tempuri.Firmas;
 import org.tempuri.WSDocumentum;
 import org.tempuri.WSDocumentumSoap;
@@ -36,24 +33,18 @@ import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistMaritimoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistOperativoEstadoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistReclamosBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ChecklistTerrestreBean;
-import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ExpedientesDesclasificaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ExpedientesDesclasificaTablaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.GeneradorBean;
-import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.GuiaSimpleBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.GuiaSimpleTablaBean;
-import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.InTransferenciaPrimariaSecundariaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.InTransferenciaPrimariaSecundariaTablaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceCajaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceCajaTablaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceCarpetaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceCarpetaTablaBean;
-import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceExpedientesReservaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.IndiceExpedientesReservaTablaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ValePrestamoBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.bean.ValePrestamoTablaBean;
 import com.mx.pmx.pmi.sad.generadorDocx.integrador.service.ChecklistID;
-import com.rsa.cryptoj.o.in;
-import com.rsa.cryptoj.o.pa;
 
 
 /*Obtencion del proceso que origina [pmx_integraci_n_de_documentos]
@@ -81,6 +72,12 @@ public class IntegradorDocx {
 	private int seleccionadoDoc = 1;
 	DateFormat dateFormat;
 	Calendar cal;
+	private final String integradorQuery = "SELECT wi.r_performer_name, pr.r_act_name FROM dmi_workitem_s wi, dm_workflow_s wf, dm_process_r pr " + 
+			" where wi.r_workflow_id = wf.r_object_id and wf.process_id = pr.r_object_id " + 
+			" and wi.r_act_def_id = pr.r_act_def_id and wi.r_workflow_id IN ( SELECT wel.workflow_id  FROM dm_workflow_s wfl, dmc_wfsd_element_string wel " + 
+			"  WHERE wfl.r_object_id = wel.workflow_id AND wel.object_name = 'id_infsub_bo' and wfl.object_name like '%Operativo%' " + 
+			"   AND wel.string_value in (SELECT r_object_id FROM pmx_infosubexpediente where numero_expediente='NUMERO') ) and pr.r_act_name like " + 
+			"	 '%Integración de Documentos%' AND wi.r_performer_name <> 'pmx_pmi_i_oprprodter_g'";
 	
 	public static enum TipoExpediente {
 		COMPROD_COMERCIAL, COMPROD_OPERATIVO_MARITIMO, COMPROD_OPERATIVO_TERRESTRE, COMPROD_FLETAMENTOS, COMPROD_TESORERIA, COMCRUD_COMERCIAL, COMCRUD_OPERATIVO_MARITIMO, COMCRUD_TESORERIA, RECLAMOS_DEMORA, RECLAMOS_CAL_CANT, NO_DISPONIBLE;
@@ -88,16 +85,16 @@ public class IntegradorDocx {
 	
 //	public static void main(String[] args) throws Exception {
 //		log.info("###### CRUDO ######");
-//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000001-2017", "Operativo Marítimo"));
-//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000002-2017", "Tesorería"));
+//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000001-2017", "Operativo Marï¿½timo"));
+//		log.info(identificarNumeroExpediente("PMI-15E-056-000-000002-2017", "Tesorerï¿½a"));
 //		log.info(identificarNumeroExpediente("PMI-15E-056-000-000003-2017", "Comercial de Crudo"));
 //		
 //		log.info("\n###### PRODUCTO ######");
 //		log.info(identificarNumeroExpediente("PMI-15E-071-000-000004-2017", "Comercial de Producto"));
-//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000005-2017", "Operativo Marítimo"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000005-2017", "Operativo Marï¿½timo"));
 //		log.info(identificarNumeroExpediente("PMI-15E-071-000-000006-2017", "Operativo Terrestre"));
 //		log.info(identificarNumeroExpediente("PMI-15E-071-000-000007-2017", "Fletamentos"));
-//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000008-2017", "Tesorería"));
+//		log.info(identificarNumeroExpediente("PMI-15E-071-000-000008-2017", "Tesorerï¿½a"));
 //		
 //		log.info("\n###### RECLAMOS ######");
 //		log.info(identificarNumeroExpediente("PMI-14E-058-001-000009-2017", null));
@@ -107,6 +104,7 @@ public class IntegradorDocx {
 //		log.info(identificarNumeroExpediente("PMI-10C-003-002-000011-2017", null));
 //	}
 
+	
 	private CaratulaBean identificarNumeroExpediente(IDfSession iDfSession, CaratulaBean paramBean, String expAsunto) throws DfException {
 		log.info("Identificando el numero de expediente:"+paramBean.getPeriodoAdicionalNoExpediente()+"; asunto:"+expAsunto);
 		String expNumero = paramBean.getPeriodoAdicionalNoExpediente();
@@ -151,8 +149,7 @@ public class IntegradorDocx {
 				+ "')  "
 				+ " AND pr.r_act_name like '";
 		
-		
-				String integracion="Integración de Documentos%'",revision="Revisar documentos%'",aprobacion="Aprobar %'";
+				String integracion="Integraci\u00F3n de Documentos%'",revision="Revisar documentos%'",aprobacion="Aprobar %'";
 				
 				
 		if (StringUtil.isEmptyOrNull(expNumero)) {
@@ -168,27 +165,27 @@ public class IntegradorDocx {
 
 			if (expNumero.contains("PMI-15E-071")) {
 				if(expAsunto.equals("Comercial de Productos")) {
-					integracion="Integración de Documentos%'";
+					integracion="Integraci\u00F3n de Documentos%'";
 					revision="Revisar documentos%'";
 					aprobacion="Aprobar %'";
 					queryTxt = queryTxt2;
 				} else if (expAsunto.equals("Operativo Mar\u00edtimo")) {
-					integracion="Integración de Documentos%'";
+					integracion="Integraci\u00F3n de Documentos%'";
 					revision="Revisar documentos%'";
 					aprobacion="Aprobar %'";
 					queryTxt = queryTxt2;
 				} else if (expAsunto.equals("Operativo Terrestre")) {
-					integracion="Integración de Documentos%'";
+					integracion="Integraci\u00F3n de Documentos%'";
 					revision="Revisar documentos%'";
 					aprobacion="Aprobar %'";
 					queryTxt = queryTxt2;
 				} else if (expAsunto.equals("Fletamentos")) {
-					integracion="Integración de Documentos%'";
+					integracion="Integraci\u00F3n de Documentos%'";
 					revision="Revisar documentos%'";
 					aprobacion="Aprobar %'";
 					queryTxt = queryTxt2;
 				} else if (expAsunto.equals("Tesorer\u00eda")) {
-					integracion="Integración de Documentos%'";
+					integracion="Integraci\u00F3n de Documentos%'";
 					revision="Revisar documentos%'";
 					aprobacion="Aprobar %'";
 					queryTxt = queryTxt2;
@@ -198,17 +195,17 @@ public class IntegradorDocx {
 				if (expNumero.contains("PMI-15E-056")) {
 					
 					if(expAsunto.equals("Comercial de Crudo")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt2;
 					} else if (expAsunto.equals("Operativo Mar\u00edtimo")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt2;
 					} else if (expAsunto.equals("Tesorer\u00eda")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt2;
@@ -216,22 +213,22 @@ public class IntegradorDocx {
 				}
 				else {
 					if(expAsunto.equals("Comercial")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Operativo")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Tesorer\u00eda")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt4;
 					} else if (expAsunto.equals("Finanzas")) {
-						integracion="Integración de Documentos%'";
+						integracion="Integraci\u00F3n de Documentos%'";
 						revision="Revisar documentos%'";
 						aprobacion="Aprobar %'";
 						queryTxt = queryTxt4;
@@ -239,21 +236,22 @@ public class IntegradorDocx {
 				}
 			}
 		} else if (expNumero.contains("PMI-14E-058-001")) {
-			integracion="Integración de Documentos%'";
+			integracion="Integraci\u00F3n de Documentos%'";
 			revision="Revisar documentos%'";
 			aprobacion="Aprobar %'";
 		} else if (expNumero.contains("PMI-14E-058-002")) {
-			integracion="Integración de Documentos%'";
+			integracion="Integraci\u00F3n de Documentos%'";
 			revision="Revisar documentos%'";
 			aprobacion="Aprobar %'";
 		} else {
-			integracion="Integración de Documentos%'";
+			integracion="Integraci\u00F3n de Documentos%'";
 			revision="Revisar documentos%'";
 			aprobacion="Aprobar %'";
 		}
 		log.info("Query para obtener int:"+queryTxt+integracion);
 		IDfQuery query = new DfQuery(queryTxt+integracion);
 		IDfCollection resultSet = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+
 		while (resultSet.next()) {
 			paramBean.setClasificacionArchivisticaNombreResponsableIntegracion(resultSet.getString("r_performer_name"));
 			log.info("Integrador:"+resultSet.getString("r_performer_name"));
@@ -322,7 +320,6 @@ public class IntegradorDocx {
 				expedienteBean.setArNumrExpdnt(resultSet.getString("ar_numr_expdnt"));
 				expedienteBean.setArFechCierr(resultSet.getString("ar_fech_cierr"));
 				expedienteBean.setArSerieDocmntl(resultSet.getString("ar_serie_docmntl"));
-				
 			}
 		}
 		return expedienteBean;		
@@ -437,30 +434,16 @@ public class IntegradorDocx {
 //		log.info("sali");
 //	}
 	public CaratulaBean integraDatosCaratula (CaratulaBean parambean, Map<String,String> parametros, String userLT, String asuntoSubexpediente) throws Exception{
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
-//		if(parambean.getClasificacionArchivisticaFechaAperturaExpediente()!=null&&!parambean.getClasificacionArchivisticaFechaAperturaExpediente().trim().equals("")){
-//			try {
-//				parambean.setClasificacionArchivisticaFechaAperturaExpediente(simpleDateFormat.format(new Date(new Long(parambean.getClasificacionArchivisticaFechaAperturaExpediente()).longValue())));
-//			} catch (NumberFormatException e) {
-//				parambean.setClasificacionArchivisticaFechaAperturaExpediente("");
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		if(parambean.getClasificacionArchivisticaFechaCierreExpediente()!=null&&!parambean.getClasificacionArchivisticaFechaCierreExpediente().trim().equals("")){
-//			try {
-//				parambean.setClasificacionArchivisticaFechaCierreExpediente(simpleDateFormat.format(new Date(new Long(parambean.getClasificacionArchivisticaFechaCierreExpediente()).longValue())));
-//			} catch (NumberFormatException e) {
-//				parambean.setClasificacionArchivisticaFechaCierreExpediente("");
-//				e.printStackTrace();
-//			}
-//		}
-		
-//		destinoFinalHistorico
-//		destinoFinalBaja
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		IDfSession iDfSession = documentumService.getSession(userLT);
 		String destinoStr;
+		String valorAdministrativo 	= "";
+		String valorLegal 			= "";
+		String valorFiscal			= "";
+		String concentracion   		= "";
+		String tramite		   		= "";
+		String fechaApertura		= "";
+		
 		try {
 			String query="SELECT * FROM dm_dbo.CADIDO " + 
 					"WHERE codigo_cica IN (SELECT ar_serie_docmntl FROM pmx_pmi_expediente " + 
@@ -469,37 +452,45 @@ public class IntegradorDocx {
 			log.info("Query para obtener datos del CADIDO:"+query);
 			IDfCollection col = queryHist.execute(iDfSession, IDfQuery.DF_READ_QUERY);		   	
 			while(col.next()) {
-				destinoStr=col.getString("destino_final");
-				if(destinoStr.trim().equals("Eliminación")) {
+				destinoStr= col.getString("destino_final");
+				valorAdministrativo = col.getString("valor_documental_a");
+				valorLegal 			= col.getString("valor_documental_l");
+				valorFiscal 		= col.getString("valor_documental_f");
+				concentracion 		= col.getString("concentracion");
+				tramite				= col.getString("tramite");
+				
+				if(destinoStr.trim().equals("Eliminaciï¿½n")) {
 					parambean.setDestinoFinalBaja("X");
 					
-				}
-				else {
+				}else {
 					parambean.setDestinoFinalHistorico("X");
 				}
+				if(valorAdministrativo.equals("1")) {
+					parambean.setValorDocumentalAdministrativo("X");
+				}
+				if(valorLegal.equals("1")) {
+					parambean.setValorDocumentalLegal("X");
+				}
+				if(valorFiscal.equals("1")) {
+					parambean.setValorDocumentalFinanciero("X");
+				}
+				parambean.setPlazoConservacionArchivoConcentracion(concentracion);
+				parambean.setPlazoConservacionArchivoTramite(tramite);
 			}
-//			if(parambean.getDestinoFinalBaja()
-			
+			query = "SELECT ar_fech_aprtr  FROM pmx_pmi_expediente "
+					+ "WHERE ar_numr_expdnt = '"+parambean.getPeriodoAdicionalNoExpediente()+"'";
+			queryHist.setDQL(query);
+			IDfCollection colFechaApertura = queryHist.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+			if(colFechaApertura.next()) {
+				fechaApertura = simpleDateFormat.format(colFechaApertura.getTime("ar_fech_aprtr").getDate());
+				parambean.setClasificacionArchivisticaFechaAperturaExpediente(fechaApertura);
+			}
 		} catch (DfException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			documentumService.releaseSession(iDfSession);
 		}
-		
-				
-		if(parambean.getValorDocumentalAdministrativo()!=null&&!parambean.getValorDocumentalAdministrativo().trim().equals(""))
-			parambean.setValorDocumentalAdministrativo(parambean.getValorDocumentalAdministrativo().trim().equals("true")?"X":"");
-		else
-			parambean.setValorDocumentalAdministrativo("");
-		if(parambean.getValorDocumentalLegal()!=null&&!parambean.getValorDocumentalLegal().trim().equals(""))
-			parambean.setValorDocumentalLegal(parambean.getValorDocumentalLegal().trim().equals("true")?"X":"");
-		else
-			parambean.setValorDocumentalLegal("");
-		if(parambean.getValorDocumentalFinanciero()!=null&&!parambean.getValorDocumentalFinanciero().trim().equals(""))
-			parambean.setValorDocumentalFinanciero(parambean.getValorDocumentalFinanciero().trim().equals("true")?"X":"");
-		else
-			parambean.setValorDocumentalFinanciero("");
 		if(parametros!=null && parametros.get("r_object_id")!=null){
 			this.integraDatosCaratulaDocumentum(parambean, parametros, userLT, asuntoSubexpediente);
 		}
@@ -1794,7 +1785,7 @@ public class IntegradorDocx {
 				checklistMaritimoBean = new ChecklistMaritimoBean();
 				checklistMaritimoBean.setFecha(dateFormat.format(cal.getTime()));
 //				ordenRelacionada = collOrdenesRelacionadas.getString("orden_relacionada");
-				checklistMaritimoBean.setOrdenPmi(ordenRelacionada);
+				checklistMaritimoBean.setOrdenPmi(expediente);
 				getDocumentosQuery = "SELECT id_documento, descripcion_documento, seleccionado, digital, object_id  FROM dm_dbo.DOCUMENTO_SELECCIONADO WHERE numero_expediente = '"
 						+ expediente + "' AND descripcion_expediente = '" + asuntoSubexpediente
 						+ "' ";
@@ -1814,6 +1805,13 @@ public class IntegradorDocx {
 					checklistMaritimoBean = registraChecklistMaritimo(checklistMaritimoBean, idDocumento, descripcion,
 							seleccionado, digital);
 				}
+				if(expediente.contains("PMI-15E-071")) {
+					checklistMaritimoBean.setProductos("    " + checked);
+				}
+				if(expediente.contains("PMI-15E-056")) {
+					checklistMaritimoBean.setCrudo("    " + checked);
+				}
+				checklistMaritimoBean.setIntegroNombre(this.usuarioIntegrador(iDfSession, expediente));
 				checklistMaritimoBean.setNumeroFolios(Integer.toString(conteoHojas));
 				listChecklistMaritimoBean.add(checklistMaritimoBean);
 //			}
@@ -1826,10 +1824,21 @@ public class IntegradorDocx {
 		}
 		return listChecklistMaritimoBean;
 	}
-
+	private String usuarioIntegrador(IDfSession iDfSession,String numeroExpediente) throws DfException {
+		String integrador = "";
+		String queryIntegrador = integradorQuery.replace("NUMERO", numeroExpediente);
+		IDfQuery query = new DfQuery(queryIntegrador);
+		IDfCollection resultSet = query.execute(iDfSession, IDfQuery.DF_READ_QUERY);
+		while (resultSet.next()) {
+			if(!resultSet.getString("r_performer_name").contains("pmi")) {
+				integrador = resultSet.getString("r_performer_name");
+			}
+		}
+		return integrador;
+	}
 	private ChecklistMaritimoBean registraChecklistMaritimo(ChecklistMaritimoBean bean, String idDocumento,
 			String descripcion, int seleccionado, int digital) {
-
+		
 		if (idDocumento.trim().equals(ChecklistID.Autorizacion_de_embarque_por_tipo_de_pago)
 				&& seleccionado == seleccionadoDoc) {
 			bean.setAutorizacionEmbarqueTipoPago(checked);
@@ -1941,11 +1950,8 @@ public class IntegradorDocx {
 		IDfSession iDfSession = documentumService.getSession(userLT);
 		String ordenRelacionada = null;
 		String getDocumentosQuery = null;
-		String getPaginasQuery = null;
 		IDfQuery queryDoc = null;
-		IDfQuery queryPag = null;
 		IDfCollection collDocumentos = null;
-		IDfCollection collPaginas = null;
 		String idDocumento = null;
 		String descripcion = null;
 		int seleccionado;
@@ -2181,7 +2187,6 @@ public class IntegradorDocx {
 		ChecklistOperativoEstadoBean checklistOperativoEstadoBean = null;
 		IDfSession iDfSession = documentumService.getSession(userLT);
 
-		String ordenRelacionada = null;
 		String getDocumentosQuery = null;
 		IDfQuery queryDoc = null;
 		IDfCollection collDocumentos = null;

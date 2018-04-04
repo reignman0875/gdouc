@@ -80,7 +80,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 			String asuntoSubexpediente = parametros.get("asuntoSubexpediente");
 //			if(asuntoSubexpediente==null||asuntoSubexpediente.equals("")) 
 //				paramBean.setPeriodoAdicionalNoExpediente(generadorBean.getNombreDoc());
-			paramBean = integradorDocx.integraDatosCaratula(paramBean, parametros, generadorBean.getUserName(), asuntoSubexpediente);
+			paramBean = integradorDocx.integraDatosCaratula(paramBean, parametros, generadorBean.getUserName(), asuntoSubexpediente); 
 			parametrosDocumentoDto.setIdDocumentoPlantilla("090000018000ed3e");
 			parametrosDocumentoDto.setNombreDocumento(generadorBean.getNombreDoc());
 			parametrosDocumentoDto.setRutaDocumento(generadorBean.getRutaDocumento());
@@ -191,7 +191,7 @@ public class GeneradorDocxImpl implements GeneradorWs {
 				else if (asuntoSubexpediente.equals("IndiceCajaCrudo")) {
 					listaDocumentosGenerados = generaIndiceCajaCrudo(asuntoSubexpediente, numeroExpediente, generadorBean, parametros);
 				}
-				else if (asuntoSubexpediente.equals("Tesorería")) {
+				else if (asuntoSubexpediente.equals("Tesorer\u00EDa")) {
 //					listaDocumentosGenerados = generaChecklistsComun(asuntoSubexpediente, numeroExpediente, generadorBean);
 					listaDocumentosGenerados = generaChecklistsTesoreria(asuntoSubexpediente, numeroExpediente, generadorBean, generadorBean.getRutaDocumento());
 				}
@@ -1206,7 +1206,7 @@ paramBean = new IndiceCajaBean();
 			// m.marshal(emp, System.out);
 			m.marshal(emp, baos);
 			xml = new String(baos.toByteArray(), StandardCharsets.UTF_8);
-			log.info("¿?:" + xml);
+			log.info("ï¿½?:" + xml);
 
 			// Write to File
 			// m.marshal(emp, new File("prueba.xml"));
